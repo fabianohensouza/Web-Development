@@ -1,0 +1,42 @@
+/*** Barra de navegação lateral ***/
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.Titulomenu {
+	width: 200px;
+	text-align: center;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+ul a {
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	color: #000;
+	text-indent: 30px;
+	background: #f7b600 url(../imagens/menu.png) no-repeat left;
+	text-decoration: none;
+}
+
+ul a:hover, .selecionado a{
+	background-position: right;
+	background-color: #f99200;
+	color: #fff;
+}
+
+#sobre #navegacao-lateral .sobre a,
+#servicos #navegacao-lateral .servicos a,
+#noticias #navegacao-lateral .noticias a {
+	background-position: right;
+	background-color: #f99200;
+	color: #fff;	
+}
