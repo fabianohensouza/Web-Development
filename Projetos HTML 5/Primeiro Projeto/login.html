@@ -1,0 +1,84 @@
+<html>
+
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+		
+		<a href="index.html">
+			Home 
+		</a>
+		/
+		<a href="contato.html">
+			 Contato
+		</a>
+		/
+		<a href="produtos.html">
+			 Produtos
+		</a>
+		/
+		<a href="login.html">
+			 Login
+		</a>
+
+		<h2>LOGIN</h2>
+		<form action="login.php" autocomplete="off"> <!-- Cria formulário pata enviar para a pagina login.php-->
+			Login:<br>
+			<input type="text" name="login"><br>
+			
+			Senha:<br>
+
+			<input type="submit" value="LOGAR" width="230">
+		</form>
+
+		<h2>CADASTRE-SE</h2>
+
+		<p>
+			Caso você não possui login preencha o formulário abaixo e cadastre-se.
+		</p>
+
+		<form action="cadastro.php" autocomplete="on"> <!-- Cria formulário pata enviar para a pagina login.php-->
+			
+			Nome Completo:<br>
+			<input type="text" name="Nome"><br><br>
+
+			Login:<br>
+			<input type="text" name="login"><br><br>
+
+			Sexo:<br>
+			<input type="radio" name="sexo" value="M"> Masculino<br>
+			<input type="radio" name="sexo"value="F"> Feminino<br><br>
+
+			Interesses:<br>
+			<input type="checkbox" name="inteesses"> Futebol<br>
+			<input type="checkbox" name="inteesses"> Cusos<br>
+			<input type="checkbox" name="inteesses"> Moda<br><br>
+
+			Estado:<br>
+			<select name="estado">
+				<option value="ac">AC</option>
+				<option value="am">AM</option>
+				<option value="ap">AP</option>
+				<option value="ba">BA</option>
+				<option value="ce">CE</option>
+				<option value="df">DF</option>
+				<option value="es">ES</option>
+				<option value="go">GO</option>
+				<option value="mg">MG</option>
+				<option value="pr">PR</option>
+				<option value="rj">RJ</option>
+				<option value="rs">RS</option>
+				<option value="sc">SC</option>
+				<option value="sp">SP</option>
+			</select><br><br>
+
+			Observações:<br>
+			<textarea></textarea><br><br>
+
+			<input type="submit" value="CADASTRAR">
+		</form>
+
+	</body>
+</html>

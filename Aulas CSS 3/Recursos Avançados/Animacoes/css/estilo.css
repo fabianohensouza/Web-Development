@@ -1,0 +1,118 @@
+
+@keyframes animacao-caixa {
+	from { /* Estado inicial */
+		background: red;
+		border-radius: 0%
+		}
+	to { /* Estado final */
+		background: green;
+		border-radius: 50%
+	}
+}
+
+@keyframes animacao-movendo {
+	from { /* Estado inicial */
+		background: blue;
+		border-radius: 0%;
+		top: 0px;
+		left:0px;
+	}
+	to { /* Estado final */
+		background: yellow;
+		border-radius: 50%;
+		top: 200px;
+		left:200px;
+	}
+}
+
+@keyframes animacao-impar {
+	from { /* Estado inicial */
+		background: red;
+		border-radius: 0%;
+		top: 0px;
+		left:0px;
+	}
+	to { /* Estado final */
+		background: green;
+		border-radius: 50%;
+		top: 200px;
+		left:0px;
+	}
+}
+
+@keyframes animacao-par {
+	from { /* Estado inicial */
+		background: red;
+		border-radius: 50%;
+		top: 200px;
+		left: 0px;
+	}
+	to { /* Estado final */
+		background: green;
+		border-radius: 0%;
+		top: 0px;
+		left: 0px;
+	}
+}
+
+@keyframes animacao-final {
+	from { /* Estado inicial */
+		background: blue;
+		border-radius: 50%;
+		top: 250px;
+		left: 0px;
+	}
+	to { /* Estado final */
+		background: yellow;
+		border-radius: 0%;
+		top: 250px;
+		left: 1000px;
+	}
+}
+
+#impar {
+	width: 100px;
+	height: 100px;
+	display: inline;
+	position: relative;
+	animation: animacao-impar 2s 0s 4000 alternate;
+}
+
+#par {
+	width: 100px;
+	height: 100px;
+	display: inline;
+	position: relative;
+	animation: animacao-par 2s 0s 4000 alternate;
+}
+
+#final {
+	width: 100px;
+	height: 100px;
+	display: block;
+	position: relative;
+	animation: animacao-final 20s 0s 4000 alternate;
+}
+
+#move {
+	width: 300px;
+	height: 300px;
+	background: yellow;
+	position: relative;
+	border-radius: 50%;
+	animation-name: animacao-movendo;
+	animation-duration: 5s;
+	animation-delay: 2s;
+	animation-iteration-count: 40000000;
+	animation-direction: alternate;
+}
+
+#caixa1 {
+	width: 300px;
+	height: 300px;
+	background: green;
+	border-radius: 50%;
+	animation: animacao-caixa 0.5s 2s 4000 alternate;
+}
+
+	
