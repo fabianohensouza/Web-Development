@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			// declaring variables with fixed values
+			var crianca = 15 //children
+			var jovem = 30 //young
+			var adulto = 60 //adult
+
+			var idade = prompt('Digite a idade')
+
+			// testing what age brackets the person is with if statement
+			if ( idade < 0) {
+				document.write('Idade inválida')
+			}
+			
+			else if (idade >= 0 && idade < crianca) {
+				document.write('Esta é uma criança pois tem ' + idade + ' anos!')
+			}
+			
+			else if (idade >= crianca && idade < jovem) {
+				document.write('Este é um jovem pois tem ' + idade + ' anos!')
+			}
+			
+			else if (idade >= adulto && idade < adulto) {
+				document.write('Este é um adulto pois tem ' + idade + ' anos!')
+			}
+
+			// testing what age brackets the person is with a ternarium opearator
+
+			var resultado = ( idade >= adulto ) ? 'Este é um adulto pois tem ' + idade + ' anos!' : ''
+			document.write(resultado)
+
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

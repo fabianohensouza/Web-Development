@@ -8,17 +8,26 @@
 
 			var media = 7
 			var max_falt = 15
+
 			var nota = prompt('Digite a nota do aluno')
 			var faltas = prompt('Digite as faltas do aluno')
 
 			// if statement
 			if (nota >= media && faltas <= max_falt) {
-				document.write('Aprovado!')
+				document.write('Aprovado!</br>')
 			}
 
 			else {
-				document.write('Reprovado')
+				document.write('Reprovado!</br>')
 			}
+
+			/*
+			ternarium opearator
+			var variable = <condition> ? <true> : <false>
+			*/
+
+			var resultado = ( nota >= media && faltas <= max_falt ) ? 'Aprovado!' : 'Reprovado!'
+			document.write(resultado)
 
 		</script>
 
