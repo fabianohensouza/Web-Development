@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			//creating a return function to calculate of a area
+			function calculateArea( width, length) {
+
+				//logic
+				var area = width * length
+
+				// retur the value of calcutation
+				return area
+			}
+
+			//Requesting the user to insert the values of width and length and converting to float
+			var width = parseFloat(prompt('Type the Width of the area'))
+			var length = parseFloat(prompt('Type the Length of the area'))
+
+			//Calling the functions
+			printArea(calculateArea(width, length))
+
+			//creating a void function to print the area - This function was declared before of its call
+			function printArea(area) {
+				
+				//print the area in the screen
+				document.write('O terreno possui ' + area + ' metros quadrados.')
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

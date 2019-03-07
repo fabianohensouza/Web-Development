@@ -6,18 +6,33 @@
 
 		<script>
 
+			// This function print in the browser a message informing the IMC of the person. 
+			function printMessage(name, massa, classifica) {
+				document.write(name + ' possui índice de massa corporal igual a ' + massa + ', sendo classificado como: ' + classifica)
+			}
+
+			// This function shows only 2 decimals of a float number
+			function twoDecimals(num) {
+				num = num.toFixed( 2 )
+				return num
+			}
+
 			// User personal data insert
 			var name = prompt('Please, type your name')
 			var height = prompt('Please, type your height (In centimeters)')
 			var weight = prompt('Please, type your weight')
 
+			// Convertinhg the height and weight string to float
 			height = parseFloat(height)
 			weight = parseFloat(weight)
 
+			// using arithimetcis operators to calculing the heiht in meters
 			height /=100
 
-			var massa = weight / (height * height)
+			// Calculing the IMC with the data inserted
+			var massa = twoDecimals(weight / (height * height))
 
+			// classifying the IMC 
 			if (massa < 16) {
 				classifica = 'Baixo peso muito grave'
 			}
@@ -43,7 +58,8 @@
 				classifica = 'Obesidade de grau 3'
 			}
 
-			document.write(name + ' possui índice de massa corporal igual a ' + massa + ', sendo classificado como: ' + classifica)
+			// Calling the function to print a messagem in the screen
+			printMessage(name, massa, classifica)
 
 		</script>
 
