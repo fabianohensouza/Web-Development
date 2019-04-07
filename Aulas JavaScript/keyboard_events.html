@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			function action1() {
+				alert('Tecla apertada')
+			}
+
+			function action2() {
+				alert('Tecla Liberada')
+			}
+
+			function action3() {
+				alert('Tecla Pressionada') //this occours only in keys that poses characters
+			}
+
+		</script>
+
+
+	</head>
+
+	<body>
+
+		<input onkeydown="action1()" type="text">
+		<input onkeyup="action2()" type="text">
+		<input onkeypress="action3()" type="text">
+
+	</body>
+
+</html>
