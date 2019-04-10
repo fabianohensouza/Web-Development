@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+				var red = green = blue = cont = 0
+				
+				function changeStyle(backColor) {
+
+					//Accessing the attribute style of the element and changing the color
+					/*To call a attribute of a style should use the camalCase pattern 
+					replacing '-' for a first capital letter of the next word*/ 
+					document.getElementById('square').style.backgroundColor = backColor
+
+					//
+					switch(backColor) {
+					case'#FF0000':
+						red += 1
+						cont += 1
+						document.getElementById('total_red').value = red
+						document.getElementById('total').value = cont
+						break;
+					case'#00FF00':
+						green += 1
+						cont += 1
+						document.getElementById('total_green').value = green
+						document.getElementById('total').value = cont
+						break;
+					case'#0000FF':
+						blue += 1
+						cont += 1
+						document.getElementById('total_blue').value = blue
+						document.getElementById('total').value = cont
+						break;
+					case'initial':
+						red = green = blue = cont = 0
+						document.getElementById('total_red').value = red
+						document.getElementById('total_green').value = green
+						document.getElementById('total_blue').value = blue
+						document.getElementById('total').value = cont
+						document.getElementById('square').style.height = '100px'
+						document.getElementById('square').style.width = '200px'
+						break;
+					}
+				}
+
+				function changeHeight() {
+
+					var newheight = parseInt(document.getElementById('height').value)
+
+					if ( newheight >= 5 && newheight <= 250) {
+
+						newheight = newheight.toString() + 'px'
+						document.getElementById('square').style.height = newheight
+					}
+
+					else {
+
+						alert('Valor incorreto!')
+						document.getElementById('height').value = ''
+					}
+				}
+
+
+				function changeWidth() {
+
+					var newwidth = parseInt(document.getElementById('width').value)
+
+					if ( newwidth >= 5 && newwidth <= 900) {
+
+						newwidth = newwidth.toString() + 'px'
+						document.getElementById('square').style.width = newwidth
+					}
+
+					else {
+
+						alert('Valor incorreto!')
+						document.getElementById('width').value = ''
+					}
+				}
+
+		</script>
+
+
+	</head>
+
+	<body>
+
+		<h3>Manipilando estilos</h3>
+		<p>Pressione 'Reset' para reiniciar</p>
+
+		<button type="button" onclick="changeStyle('#FF0000')">Vermelho</button>
+		<button type="button" onclick="changeStyle('#00FF00')">Verde</button>
+		<button type="button" onclick="changeStyle('#0000FF')">Azul</button>
+		<button type="button" onclick="changeStyle('initial')">Reset</button>
+
+		<hr>
+
+		<div style="border: solid 1px #000; width: 200px; height: 100px" id="square"></div>
+
+		<hr>
+
+		<h3>Contadores</h3>
+
+		<span>Vermelho selecionado: </span>
+		<input type="text" disabled="disabled" id="total_red" style="width: 40px; margin: 5px"><br>
+		<span>Verde selecionado: </span>
+		<input type="text" disabled="disabled" id="total_green" style="width: 40px; margin: 5px"><br>
+		<span>Azul selecionado: </span>
+		<input type="text" disabled="disabled" id="total_blue" style="width: 40px; margin: 5px"><br>
+		<span>Total: </span>
+		<input type="text" disabled="disabled" id="total" style="width: 40px; margin: 5px"><br>
+
+		<hr>
+
+		<h3>Alterando dimensões</h3>
+		<p>Altura (min 5/max 250) - Largura (min 5/max 900)</p>
+
+		<input 
+			type="text"
+			placeholder="Insira a altura"
+			onblur="changeHeight()"
+			id="height" 
+		/>
+		<input 
+			type="text"
+			placeholder="Insira a largura"
+			onblur="changeWidth()"
+			id="width" 
+		/>
+
+	</body>
+
+</html>
