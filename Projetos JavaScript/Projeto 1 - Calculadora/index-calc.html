@@ -14,26 +14,21 @@
         border-radius: 10px;
         box-shadow: 1px 1px 5px #000;
       }
-
       .btn {
         width: 60px;
         height: 50px;
         margin: 5px;
         box-shadow: 1px 1px 1px #000;
       }
-
       .clear {
         width: 130px;
       }
-
       .enter {
         height: 110px;
       }
-
       .zero {
         width: 130px;
       }
-
       .resultado {
         text-align: right;
         font-size: 20px;
@@ -42,23 +37,19 @@
         border: solid 1px #000;
         box-shadow: 1px 1px 1px #000;
       }
-
     </style>
 
     <script>
-
       var screen = num1 = num2 = operator = ''
+	  var recalc = false
       console.log(num1, operator, num2)
-
       function callClear() {
-
-        screen = null
+		screen = null
         showScreen(screen)
         document.getElementById("screen").placeholder = '0'
         screen = num1 = num2 = operator = ''
         console.log(num2, screen, operator, num1)
       }
-
       function showScreen(screen) {
         document.getElementById('screen').value = screen
       }
@@ -142,7 +133,7 @@
       
       function callMultiply() {
         if (screen.length >= 1) {
-          num1 = parseFloat(screen)
+          num1 = screen
           operator = document.getElementById('multiply').innerHTML
           screen = ''
           showScreen('X')
@@ -154,7 +145,7 @@
       
       function callSlash() {
         if (screen.length >= 1) {
-          num1 = parseFloat(screen)
+          num1 = screen
           operator = document.getElementById('slash').innerHTML
           screen = ''
           showScreen('/')
@@ -165,11 +156,12 @@
       }  
       
       function callDecrease() {
-        if (screen.length >= 1) {
-          num1 = parseFloat(screen)
+		if (screen.length >= 1) {
+          num1 = screen
           operator = document.getElementById('decrease').innerHTML
           screen = ''
           showScreen('-')
+		  recalc = true
         }
         else {
           showScreen('Insira um número')
@@ -178,7 +170,7 @@
       
       function callPlus() {
         if (screen.length >= 1) {
-          num1 = parseFloat(screen)
+          num1 = screen
           operator = document.getElementById('plus').innerHTML
           screen = ''
           showScreen('+')
@@ -187,37 +179,26 @@
           showScreen('Insira um número')
         }
       }
-
       function callEqual() {
-        num2 = parseFloat(screen)
-        switch (operator) { // Converting a string to number with parseInt()
-
+        num2 = screen
+        switch (operator) {
           case 'x':
-
-            screen = num1 * num2
-            showScreen(screen)
+            screen = parseFloat(num1) * parseFloat(num2)
             break
-
           case '/':
-
-            screen = num1 / num2
-            showScreen(screen)
+            screen = parseFloat(num1) / parseFloat(num2)
             break
-
           case '+':
-
-            screen = num1 + num2
-            showScreen(screen)
+            screen = parseFloat(num1) + parseFloat(num2)
             break
-
           case '-':
-
-            screen = num1 - num2
-            showScreen(screen)
+            screen = parseFloat(num1) - parseFloat(num2)
             break
         }
+		screen = screen.toString()
+		showScreen(screen)
+		num1 = num2 = operator = ''
       }
-
     </script>
 	</head>
 
