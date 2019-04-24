@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript</title>
+
+</head>
+<body>
+
+	<script>
+
+		//Creating a array with a sequential index
+		var lista_coisas = ['Banana', 'Maçã', 'Uva']
+		console.log(lista_coisas)
+
+		//Include a value in the beginning of a array
+		lista_coisas.unshift('Melão')
+		console.log(lista_coisas)
+
+		//Include a value in the finish of a array
+		lista_coisas.push('Jabuticaba')
+		console.log(lista_coisas)
+
+		//Exclude a value in the finish of a array
+		lista_coisas.pop('Jabuticaba')
+		console.log(lista_coisas)
+
+		//Exclude a value in the beginning of a array
+		lista_coisas.shift('Melão')
+		console.log(lista_coisas)
+
+		//Replacing a existing entering in the array
+		lista_coisas[1] = 'Abacaxi'
+		console.log(lista_coisas)
+
+		//Include mutiples values in the finish of a array
+		lista_coisas.push('Jabuticaba', 'Beterraba', 'Limão')
+		console.log(lista_coisas)
+
+		//Exclude a value inside of a array (index, number of exclusions)
+		lista_coisas.splice(4, 1)
+		console.log(lista_coisas)
+		lista_coisas.splice(3, 2)
+		console.log(lista_coisas)
+
+		//Replace a value inside of a array of multiples (index, number of exclusions, value1, value2 ...)
+		lista_coisas.splice(0, 1, 'Ameixa', 'Tangerina')
+		console.log(lista_coisas)
+
+		//Include a multidimensional array in the finish of a array
+		lista_coisas.push(['José', 'Antonio'])
+		console.log(lista_coisas)
+		console.log(lista_coisas[4])
+
+		//Include a entering in the finish of a multidimensional array
+		lista_coisas[4].push('Maria','Marcelo')
+		console.log(lista_coisas[4])
+
+		//Include a entering in the beginning of a multidimensional array
+		lista_coisas[4].unshift('Cassio','Otavio')
+		console.log(lista_coisas[4])
+
+		//Exclude four values inside of a array (index, number of exclusions)
+		lista_coisas[4].splice(1, 4)
+		console.log(lista_coisas[4])
+		
+		
+	</script>
+
+</body>
+</html>
