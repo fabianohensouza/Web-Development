@@ -7,16 +7,60 @@
 </head>
 <body>
 
+	<!-- Field to insert the entering that will be added in the array list -->
+	<input id="adding" placeholder="Insira uma entrada">
+
+	<button type="button" onclick="addEntering()">Incluir</button>
+
+	<!-- Field that will show the array list -->
+	<p id="showlist"></p>
+
+	<hr>
+
+	<!-- Field to insert the entering that will be searched in the array list -->
+	<input id="searching" placeholder="Digite aqui a pesquisa">
+
+	<button type="button" onclick="searchEntering()">Pesquisar</button>
+
+	<!-- Field that will show the result of search -->
+	<p id="showsearch"></p>
+
 	<script>
 
-		var lista = ['Caneta', 'Papel', 'Lapis', 'Borracha']
+		//Creating a array
+		var list = []
 
-		//If the value exists will return a value of index
-		console.log(lista.indexOf('Papel'))
-		//If the value doesn't exists will return a value -1
-		console.log(lista.indexOf('Papeis'))
+		//Function to add a entering in the finish of array
+		function addEntering() {
+			//This variable recieve the entering added
+			var value = document.getElementById('adding').value
+			//Insert the entering in the final position of the array
+			list.push(value)
 
+			//Show in the page all entering of the array
+			document.getElementById("showlist").innerHTML = list
+		}
+
+		//Function to search a entering in the finish of array
+		function searchEntering() {
+			//This variable recieve the index of the entering searched
+			var result = list.indexOf(document.getElementById('searching').value)
+			//This variable recieve the entering searched
+			var value = document.getElementById('searching').value
 		
+			//Testing if the entering exists	
+			if (result == -1) {
+				//Show in the page the result of search
+				document.getElementById("showsearch").innerHTML = 
+				("A entrada " + value + " não exite!")
+			}
+			else {
+				//Show in the page the result of search
+				document.getElementById("showsearch").innerHTML = 
+				("A entrada " + value + " ocupa a posição " + result + ".")
+			}
+		}
+
 	</script>
 
 </body>
