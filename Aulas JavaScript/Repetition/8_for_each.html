@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript</title>
+
+	<script>
+
+		var	employeeList = ['Viviane', 'Rosângela', 'Miguel', 'Lucas', 'Fernanda']
+		employeeList.name = 'employeeList'
+
+		//foreach is a method of the array object
+		//Is need to pass a callback function to handle the value
+		//This function must have 3 attributes - value/index/array
+		/*
+		In the example the function can be directly like a forEach function
+		employeeList.forEach(function(value, index, array) {
+			document.write('O valor do array ' + array.name +' na posição ' + index + ' é ' + value)
+			document.write('. </br>')
+		})
+		*/
+
+		var callback = function(value, index, array) {
+			document.write('O valor do array ' + array.name +' na posição ' + index + ' é ' + value)
+			document.write('. </br>')
+		}
+
+		employeeList.forEach(callback)
+		document.write('. </br>')
+
+		var persondata = []
+
+		persondata['name'] = 'Fabiano'
+		persondata[3] = 'Souza'
+		persondata[4] = '32'
+		persondata['birthplace'] = 'Caeté'
+
+		//forEach don't handle non0numeric index
+		//In this case only the positions 3 and 4 will be displayed
+		persondata.forEach(callback)
+
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
