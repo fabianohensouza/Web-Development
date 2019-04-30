@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			//Redirecting the page to website www.pudim.com.br
+			function accessWebsite() {
+				
+				var site = document.getElementById('website').value
+				window.location.href = ("http://" + site)
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<input id="website" placeholder="Insira o Web Site">
+
+		<button type="button" onclick="accessWebsite()">Acessar</button>
+
+		<br>
+
+		<button type="button" onclick="location.reload()">Recarregar página</button>
+
+	</body>
+
+</html>
