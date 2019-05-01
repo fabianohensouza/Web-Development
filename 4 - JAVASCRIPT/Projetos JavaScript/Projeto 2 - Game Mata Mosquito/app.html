@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
+	<head>
+		<title></title>
 
-	<script src="js/game.js"></script>
-</head>
+		<link rel="stylesheet" type="text/css" href="scripts/style.css">
+		<script src="scripts/game.js"></script>
+	</head>
 
-<!-- The event onresize will call yhe function to garther 
-the current dimensions of the browser window -->
-<body onresize="adjustSizeGameStage()">
+	<!-- The event onresize will call yhe function to garther 
+	the current dimensions of the browser window -->
+	<body onresize="adjustSizeGameStage()">
 
-</body>
+		<script>
+			
+			setInterval(function(){
+				randomicPosition()
+			}, 1000)
+
+		</script>
+
+	</body>
 </html>
