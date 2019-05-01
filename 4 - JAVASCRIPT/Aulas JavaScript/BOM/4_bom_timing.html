@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			var test = '' 
+
+			//This action will occours after 2000ms ou 2 seconds
+			//setTimeout (function () { document.write('Teste</br>') }, 1000)
+
+			function controlChronemeter(action) {
+				
+				if (action == 'start') {
+					interval = setInterval (function () {
+						test += 0.01
+						console.log('start')
+						document.getElementById("screen").placeholder = test
+						}, 10)
+					}
+
+				if (action == 'pause') {
+					clearInterval(interval)
+					console.log('pause')
+					test = 0 
+				}
+
+				if (action == 'clear') {
+					clearInterval(interval)
+					document.getElementById("screen").placeholder = '0'
+					console.log('clear')
+					test = 0 
+				}
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<button type="button" onclick="controlChronemeter('start')">Iniciar</button>
+		<button type="button" onclick="controlChronemeter('pause')">Pausar</button>
+		<button type="button" onclick="controlChronemeter('clear')">Zerar</button>
+		<input id="screen" type="text" placeholder="0" disabled="disabled" />
+
+	</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			/*Native functions in JS to treat of string values
+			Available in JS References - https://www.w3schools.com/jsref/jsref_obj_string.asp*/
+
+			//length property - return a number of character of a string
+			//The length attribute convert the pure text in a object
+			document.write('Fabiano Souza'.length + '</br>')
+
+			//return a character based in a index number - The index even starts in 0
+			document.write('Fabiano Souza'.charAt(5) + '   ')
+			var index = 9
+			document.write('Fabiano Souza'.charAt(index) + '</br>') 
+
+			//return the first occurrence of a character in a string
+			//This function is case sensitive
+			var name = 'Fabiano Souzas'
+			var char1 = 'S'
+			var char2 = 's'
+			document.write(name.indexOf(char1) + '  ')
+			document.write(name.indexOf(char2) + '</br>')
+			//If the chacater doesn't exists the retur even will be -1
+			document.write(name.indexOf('y') + '</br>')
+
+			//The function replace can replace texts into a string
+			document.write(name.replace('Souzas', 'Henrique de Souza') + '</br>')
+
+			//substr function cuts a range of characters of a string by the first position and numbers of positions following
+			document.write(name.substr(4, 7) + '</br>')	
+
+			/*ToLowerCase function convert all the string characerts to Lower Case
+			and ToUpperCase function convert all the string characerts to Upper Case*/
+			document.write(name.toLowerCase() + '</br>')
+			document.write(name.toUpperCase() + '</br>')
+
+			//trim function remove spaces before and after the string
+			var name2 = ' Fabiano Souza '
+			document.write('-' + name2.trim() + '-' + '</br>')
+
+
+
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript</title>
+
+	<script>
+
+		function listIndex(list) {
+
+			console.log(list)
+
+			for( var x in list) {
+			//In each execution the x will assume the index value
+			//this value can be used to swhow the entering in the index position
+			console.log('O valor de X é: ' + x + ' // O valor do indice X é: ' + list[x])
+
+			}
+		}
+
+		function unsortedLength(list) {
+
+			console.log(list)
+			var size = 0
+
+			for( var x in list) {
+				size++
+			}
+
+			console.log('O array acima possui ' + size + ' entradas!')
+		}
+		
+		var guestlist = ['Jorge', 'Jamilton', 'José', 'Ana', 'Maria']
+		var persondata = []
+
+		persondata['name'] = 'Fabiano'
+		persondata['surnume'] = 'Souza'
+		persondata['age'] = '32'
+		persondata['birthplace'] = 'Caeté'
+
+		listIndex(guestlist)
+		listIndex(persondata)
+
+		console.log('---------------------------')
+
+		unsortedLength(guestlist)
+		unsortedLength(persondata)
+		
+
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>

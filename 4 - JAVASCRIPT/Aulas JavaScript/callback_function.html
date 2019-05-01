@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			// This function recieve three parameters, one variable and 2 clallback function
+			function showArticle(id, callbackSuccess, callbackError) {
+				if (true) {
+					callbackSuccess('Funções de CallBack em JS','Descrição!!!')
+				}
+				else {
+					callbackError('Erro!!!')
+				}
+			}
+
+			//We can write the function when we are passing the parameters but is much better use wrapper
+			var callbackSuccess = function(title, description) {
+				document.write('<h1>' + title + '</h1>')
+				document.write('<p>' + description + '</p>')
+			}
+
+			var callbackError = function(erro) {
+				document.write('<h1>' + erro + '</h1>')
+			}
+
+			/*When we are sending a anonymous function like a variable parameter to a function we cannot use () after the variable name, otherwise the function will be executed at that time*/
+			showArticle(12254, callbackSuccess, callbackError)
+
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

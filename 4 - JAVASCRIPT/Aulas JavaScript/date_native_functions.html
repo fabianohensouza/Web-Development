@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Javascript</title>
+
+		<script>
+
+			/*Native functions in JS to treat of dates
+			Available in JS References - https://www.w3schools.com/jsref/jsref_obj_date.asp*/
+
+			//Date ia a object that needs be instantiated in a variable
+			var data = new Date()
+			document.write(data + '</br>')
+
+			//Converting a date in a string
+			document.write(data.toString() + '</br>')
+
+			//Return a day, month and year - Month starts in 0, therefore shoul increase 1 - Pay attemtion in precedence order with ()
+			document.write(data.getDate() + '/' + (data.getMonth() + 1) + '/' + data.getFullYear() + '</br>')
+
+			document.write('</br><hr></br>')			
+
+			//Manipulating date
+			//Adding or removing days
+			data.setDate(data.getDate() + 7)
+			document.write(data + '</br>')
+			data.setDate(data.getDate() - 10)
+			document.write(data + '</br>')			
+
+			//Manipulating date
+			//Adding or removing days
+			data.setMonth(data.getMonth() + 7)
+			document.write(data + '</br>')
+			data.setMonth(data.getMonth() - 10)
+			document.write(data + '</br>')			
+
+			//Manipulating date
+			//Adding or removing days
+			data.setYear(data.getFullYear() + 7)
+			document.write(data + '</br>')
+			data.setYear(data.getFullYear() - 10)
+			document.write(data + '</br>')
+
+			document.write('</br><hr></br>')
+
+
+
+
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

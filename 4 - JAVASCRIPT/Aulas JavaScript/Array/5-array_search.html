@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript</title>
+
+	<style type="text/css">
+		
+		.box {
+			width: 45%;
+			height: 700px;
+			border: 1px solid black;
+			float: left;
+			padding: 5px;
+			margin: 3px;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="box">
+		<!-- Field to insert the entering that will be added in the array list -->
+		<input id="adding" placeholder="Insira uma entrada">
+
+		<button type="button" onclick="addEntering()">Incluir</button>
+
+		<!-- Field that will show the array list -->
+		<p id="showlist"></p>
+
+	</div>
+	<div class="box">
+
+		<!-- Field to insert the entering that will be searched in the array list -->
+		<input id="searching" placeholder="Digite aqui a pesquisa">
+
+		<button type="button" onclick="searchEntering()">Pesquisar</button>
+
+		<!-- Field that will show the result of search -->
+		<p id="showsearch"></p>
+	</div>
+
+	<script>
+
+		//Creating a array
+		var list = []
+
+		//Function to add a entering in the finish of array
+		function addEntering() {
+			//This variable recieve the entering added
+			var value = document.getElementById('adding').value
+			//Insert the entering in the final position of the array
+			list.push(value)
+
+			//Show in the page all entering of the array
+			document.getElementById("showlist").innerHTML = list
+			var a = list.length
+			console.log(a)
+			document.getElementById('adding').value = ''
+		}
+
+		//Function to search a entering in the finish of array
+		function searchEntering() {
+			//This variable recieve the index of the entering searched
+			var result = list.indexOf(document.getElementById('searching').value)
+			//This variable recieve the entering searched
+			var value = document.getElementById('searching').value
+			document.getElementById('searching').value = ''
+		
+			//Testing if the entering exists	
+			if (result == -1) {
+				//Show in the page the result of search
+				document.getElementById("showsearch").innerHTML = 
+				("A entrada " + value + " não exite!")
+			}
+			else {
+				//Show in the page the result of search
+				document.getElementById("showsearch").innerHTML = 
+				("A entrada " + value + " ocupa a posição " + result + ".")
+			}
+		}
+
+	</script>
+
+</body>
+</html>
