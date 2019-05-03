@@ -3,6 +3,26 @@
 //creating theses variables here to be available in the global scope
 var height = 0
 var width = 0
+var lives = 1
+var time = 80
+var level = window.location.search
+
+//Removing the character ? of string level
+level = level.replace('?', '')
+
+	switch(level) {
+		case 'normal':
+			leveltime = 3000
+			break
+			
+		case 'dificil':
+			leveltime = 2000
+			break
+					
+		case 'chucknorris':
+			leveltime = 1000
+			break
+	}
 
 function adjustSizeGameStage() {
 	/*The methods innerHeight and innerWidth of window object show the
@@ -13,11 +33,33 @@ function adjustSizeGameStage() {
 
 adjustSizeGameStage()
 
+var chronometer = setInterval(function() {
+	
+	time -= 1
+	
+	if(time < 0) {
+		clearInterval(chronometer)
+		window.location.href = 'victory.html'
+	}
+	else {
+		document.getElementById('chronometer').innerHTML = time
+	}
+}, 1000)
+
 function randomicPosition() {
 
 	//Removing the mosquito element by its ID (if Exists)
 	if (document.getElementById('mosquito')) {
 		document.getElementById('mosquito').remove()
+
+		//Removing the life points
+		if(lives > 3){
+			window.location.href = 'game_over.html'
+		}
+		else {
+			document.getElementById('life' + lives).src = "images/coracao_vazio.png"
+			lives ++
+		}
 	}
 
 
@@ -44,6 +86,11 @@ function randomicPosition() {
 	mosquito.style.top = (positionY + 'px')	
 	mosquito.style.position = 'absolute'
 	mosquito.id = 'mosquito'
+	
+	//removing the mosquito after click
+	mosquito.onclick = function() {
+		this.remove()
+	}
 
 	//Inserting the element in the body
 	document.body.appendChild(mosquito)

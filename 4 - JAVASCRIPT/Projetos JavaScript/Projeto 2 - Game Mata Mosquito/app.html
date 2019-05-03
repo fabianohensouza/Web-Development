@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title></title>
-
+		<meta charset="utf-8">
+		
 		<link rel="stylesheet" type="text/css" href="scripts/style.css">
 		<script src="scripts/game.js"></script>
 	</head>
@@ -11,11 +12,26 @@
 	the current dimensions of the browser window -->
 	<body onresize="adjustSizeGameStage()">
 
-		<script>
+		<div class="panel">
+			<div class="lives">
+
+				<img id="life1" src="images/coracao_cheio.png">
+				<img id="life2" src="images/coracao_cheio.png">
+				<img id="life3" src="images/coracao_cheio.png">
 			
+			</div>
+			<div class="chronometer">Tempo restante: <span id="chronometer"></span></div>		
+		</div>
+
+		<script>
+
+			document.getElementById('chronometer').innerHTML = time
+
+			console.log(level, leveltime)
+
 			setInterval(function(){
 				randomicPosition()
-			}, 1000)
+			}, leveltime)
 
 		</script>
 
