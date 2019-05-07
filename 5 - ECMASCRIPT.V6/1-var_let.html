@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+		<script type="text/babel">
+			 
+			 //3 scopes: global, functionand block
+
+			 var serie = 'Friends'
+
+			 function x() {
+			 	//The variable series is available in this scope
+			 	var serie = 'Game of Thrones'
+			 	console.log('Bloco da função: ' + serie)
+
+			 	if(true) {
+			 		//The variable series is available in this scope
+			 		console.log('Bloco If dentro de função: ' + serie)
+			 		var serie2 = 'Breakin bad'
+			 	}
+
+			 	//The variable serie2 will show because it sufered a hoisting and was elevated 
+			 	//1 level and now it is available in function scope
+			 	console.log('Bloco da função: ' + serie2)
+			 }
+
+			 x()
+
+			 if(true) {
+			 	//The variable series is available in this scope
+			 	console.log('Bloco If em Global: ' + serie)
+			 }
+
+			 // Using let to declaring variables
+			 console.log('--------- Using let to declaring variables ---------')
+
+			 //The let declairing functions preserve the variable in its scope 
+			 //and it doesn't sufer hoisting
+
+			 if(true) {
+			 	let serie3 = 'Big Bang Theory'
+			 	console.log(serie3)
+			 }
+
+			 console.log(serie3)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
