@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+		<script type="text/babel">
+			 
+			 //Using VAR
+
+			 var serie = 'Friends'
+
+			{
+				var serie = 'GOT'
+				console.log('VAR - Dentro do bloco: ' + serie)
+			}
+
+			console.log('VAR - Fora do bloco: ' + serie)
+
+			//Using LET
+
+			let serie2 = 'The Walking Dead'
+
+			{
+				let serie2 = 'Big Bang Theory'
+				console.log('LET - Dentro do bloco: ' + serie2)
+			}
+
+			console.log('LET - Fora do bloco: ' + serie2)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
