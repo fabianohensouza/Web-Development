@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+		<script type="text/babel">
+			 
+			 //Using to create a constant value - Don't will be changed
+             //Good Pratice - Always use constant names with uppercase letters
+             //In attribuition even have to define a value
+
+             const SERIE = 'Friends'
+
+            function x() {
+			    //A constant value don't suffer hoisting
+                const SERIE = 'The Walking Dead'
+                console.log(SERIE)
+            }
+
+            x()
+
+            console.log(SERIE)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
