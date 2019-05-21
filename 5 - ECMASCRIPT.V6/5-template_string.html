@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+			
+            let name = 'Fabiano'
+
+            //console.log('Olá ' + name + ', tudo bem?')
+            //Template string eliminates the needs of concatening string without signal +
+            
+            console.log(`Olá ${name}, tudo bem?`)
+
+            console.log(`7 + 7 = ${7+7}`)
+
+            function calculate(x, y) {
+                return x * y
+            }
+
+            console.log(`A multiplicação de 8 * 8 é: ${calculate(8,8)}`)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+			
+
+            //create a anonymous function
+
+            let square = function (x = 5) {
+                return x * x
+            }
+
+            document.write(` ${square()} </br>`)
+
+            //create a arrow function
+
+            let square2 = (x = 8, y = 5) => {
+                return x * x
+            }
+
+            document.write(` ${square2()} </br>`)
+
+            //create a arrow function with one parameter and without default parameter
+
+            let square3 = x => x * x
+
+            document.write(` ${square3(9)} </br>`)
+
+            //create a arrow function with ternarium IF
+            //condition ? 'True' : 'False'
+
+            let number = 7
+            
+            let evenOrOdd = number => number % 2 === 0 ? 'par' : 'impar'
+
+            document.write(`O número ${number} ${evenOrOdd(number)} </br>`)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>

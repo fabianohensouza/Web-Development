@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+			
+
+            //Defining default value of the function parameters
+            function tellAStory (personage = 'Simba', activitie = 'Morder', owner_name = 'Fabiano') {
+                document.write(`Era uma vez um cachorro ${personage}, ele adorava ${activitie}, seu dono era ${owner_name} e eles viveram felizes para sempre</br>`)
+            }
+
+            tellAStory()
+            tellAStory('Tarugo', 'soltar pêlo', 'Tunico')
+            tellAStory(undefined, 'cagar', undefined)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
