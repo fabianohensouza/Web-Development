@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+			
+
+            //creating a object model - Class - Use CamelCase in class names
+            class BankAccount {
+                //agency - accountNumber - balance - limit
+                constructor() {
+                    this.agency = 1075
+                    this.accountNumber = "8351-2"
+                    this.balance = 50
+                    this.limit = -450
+                }
+
+                deposit(valueDeposit) {
+                    this.balance += valueDeposit
+                }
+
+                cashOut(valueCashOut) {
+                    if ((this.balance - valueCashOut) > this.limit) {
+                        this.balance -= valueCashOut
+                    }
+                    else {
+                        console.log(`O saldo da insulficiente`)
+                    }
+                }
+
+                checkBalance() {
+                    return this.balance
+                }
+            }
+
+            //Instantiating objects from a class
+            let account1 = new BankAccount()
+            let account2 = new BankAccount()
+            let account3 = new BankAccount()
+
+            //Accessing a method of a class object
+            console.log(`O saldo da conta 1 é: ${account1.checkBalance()}`)
+
+            account2.deposit(520)
+            console.log(`O saldo da conta 2 é: ${account2.checkBalance()}`)
+
+            account3.cashOut(45)
+            console.log(`O saldo da conta 3 é: ${account3.checkBalance()}`)
+            account3.cashOut(105)
+            console.log(`O saldo da conta 3 é: ${account3.checkBalance()}`)
+            account3.cashOut(400)
+            console.log(`O saldo da conta 3 é: ${account3.checkBalance()}`)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
