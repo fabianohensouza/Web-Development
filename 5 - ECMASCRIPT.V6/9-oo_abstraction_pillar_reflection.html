@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+			
+
+            //Creating a software to a woodwork
+            //Building a couch and chair
+
+            class CreateChair {
+                constructor(legs, rotating, collor) {
+                    this.legs = legs
+                    this.rotating = rotating
+                    this.collor = collor
+                }
+
+                rotatingChair() {
+                    if (this.rotating === true){
+                        console.log('A cadeira girou!')
+                    }
+                    else {
+                        console.log('A cadeira não é giratória!')
+                    }
+                }
+            }
+
+            let chair = new CreateChair(4, false, 'Azul')
+            chair.rotatingChair()
+            console.log(chair)
+
+            let chair_list = Array()
+            chair_list.push(new CreateChair(1, true, 'Amarela'))
+            chair_list[0].rotatingChair()
+            chair_list.push(new CreateChair(6, false, 'Verde'))
+            chair_list[1].rotatingChair()
+            console.log(chair_list)
+
+            //Create a couch model object
+            class CreateCouch {
+                constructor(seats, reclinig, collor) {
+                    this.seats = seats
+                    this.reclinig = reclinig
+                    this.collor = collor
+                }
+
+                rotatingChair() {
+                    if (this.reclinig === true){
+                        console.log('O sofá reclinou!')
+                    }
+                    else {
+                        console.log('O sofá não é reclinável!')
+                    }
+                }
+            }
+
+            let couch_list = []
+
+            function instantiatingCouch(seats, reclinig, collor) {
+                couch_list.push(new CreateCouch(seats, reclinig, collor))
+                console.log(`Sofá com ${seats} lugar(es), ${reclinig ? 'giratória' : 'não giratória'} e da cor ${collor} criado com sucesso.`)
+            }
+
+            instantiatingCouch(7, true, 'Azul')
+            instantiatingCouch(1, false, 'Verde')
+            
+
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
