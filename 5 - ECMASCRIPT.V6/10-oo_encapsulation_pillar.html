@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            //Create a TV object
+            //By convention all attribute started with _ shouldn't ba accessed out of object
+            class Tv {
+                constructor() {
+                    this._channel_list = [2, 4, 5, 12, 23]
+                    this._active_channel = 5
+                    this._valume = 15
+                }
+
+                //Use methods getters and setters to acessing and changing attributes within a object
+                get activeChannel() {
+                    return this._active_channel
+                }
+
+                set changeVolume(volume) {
+                    this._volume = volume
+                }
+
+                set changeChannel(channel) {
+                    if (this._channel_list.indexOf(channel) === -1){
+                        document.write(`O canal ${channel} não existe.</br>`)
+                    }
+                    else{
+                        this._active_channel = channel
+                    }
+                }
+
+                get volume() {
+                    return this._volume
+                }
+            }
+
+            let tv = new Tv()
+            document.write(`O canal ativo é o ${tv.activeChannel} </br>`)
+            tv.changeVolume = 25
+            document.write(`O volume da TV foi alterado para ${tv.volume}</br>`)
+            tv.changeChannel = 12
+            document.write(`O canal ativo é o ${tv.activeChannel}</br>`)
+            tv.changeChannel = 15
+            document.write(`O canal ativo é o ${tv.activeChannel}</br>`)
+
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
