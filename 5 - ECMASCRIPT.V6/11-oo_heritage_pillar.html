@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            //Create a super class object
+
+            class Animal {
+                contructor() {
+                    this.collor = 'Branco Marrom'
+                    this.size = 30
+                }
+
+                sleep() {
+                    console.log('Durmir')
+                }
+            }
+            class Dog extends Animal{
+                contructor() {
+                    this.ears = 'Grandes e caídas'
+                }
+
+                run() {
+                    console.log('Correr')
+                }
+
+                roar() {
+                    console.log('Rosnar')
+                }
+            }
+
+            class Bird extends Animal{
+                contructor() {
+                    this.beak = 'Curto'
+                }
+
+                fly() {
+                    console.log('Voar')
+                }
+            }
+
+            let dog = new Dog()
+            let bird = new Bird()
+
+            console.log(dog)
+            console.log(bird)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
