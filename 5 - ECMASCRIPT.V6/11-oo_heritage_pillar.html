@@ -9,9 +9,10 @@
             //Create a super class object
 
             class Animal {
-                contructor() {
-                    this.collor = 'Branco Marrom'
-                    this.size = 30
+                constructor() {
+                    this.collor = ''
+                    this.size = null
+                    this.wheight = null
                 }
 
                 sleep() {
@@ -19,7 +20,8 @@
                 }
             }
             class Dog extends Animal{
-                contructor() {
+                constructor() {
+                    super()
                     this.ears = 'Grandes e caídas'
                 }
 
@@ -33,7 +35,8 @@
             }
 
             class Bird extends Animal{
-                contructor() {
+                constructor() {
+                    super()
                     this.beak = 'Curto'
                 }
 
@@ -42,11 +45,32 @@
                 }
             }
 
+            class Papagaio extends Bird {
+                constructor() {
+                    super()
+                    this.speaker = true
+                }
+
+                speak() {
+                    console.log('Falar')
+                }
+            }
+
             let dog = new Dog()
             let bird = new Bird()
+            let papagaio = new Papagaio()
 
             console.log(dog)
             console.log(bird)
+            console.log(papagaio)
+
+            dog.sleep()
+            bird.sleep()
+            papagaio.sleep()
+            papagaio.fly()
+            papagaio.speak()
+
+
 
 		</script>
 
