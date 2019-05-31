@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            //Creating a class of a object
+            class Product {
+                constructor(description, price) {
+                    this.description = description
+                    this.price = price
+                }
+
+                seeProduct() {
+                    console.log(`O pruduto ${this.description} custa apenas R$${this.price}!`)
+                }
+            }
+
+            let product = new Product('Vassoura', 9.99)
+            product.seeProduct()
+
+            //Creating a literal object
+            let product2 = {
+                description: 'Tenis',
+                price: '299',
+                seeProduct: function () {
+                    console.log(`O pruduto ${this.description} custa apenas R$${this.price}!`)
+                } 
+            }
+
+            product2.seeProduct()
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
