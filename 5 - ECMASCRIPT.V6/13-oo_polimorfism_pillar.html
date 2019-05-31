@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            //Create a super class object
+            class Animal {
+                constructor(collor, size, wheight) {
+                    this.collor = collor
+                    this.size = size
+                    this.wheight = wheight
+                }
+                sleep() {
+                    console.log('Durmir')
+                }
+            }
+            class Bird extends Animal{
+                constructor(beak, collor, size, wheight) {
+                    super(collor, size, wheight)
+                    this.beak = beak
+                }
+                fly() {
+                    console.log('Voar')
+                }
+            }
+            class Papagaio extends Bird {
+                constructor(speaker, collor, size, wheight) {
+                    //The super method enable access to the constructor method of father class
+                    super('Pequeno', collor, size, wheight)
+                    this.speaker = speaker
+                }
+                speak() {
+                    console.log('Falar')
+                }
+            }
+            class Ostrich extends Bird {
+                constructor() {
+                    super('Grande', 'Preto e Branco', 250, 150.8)
+                }
+                burryHead() {
+                    console.log('Enterrar a cabeça')
+                }
+                
+                //Overlaying the father's method - Polimorfism principle
+                fly() {
+                    console.log('Não sabe voar')
+                }
+            }
+            let papagaio = new Papagaio(true, 'Verde', 45, 12.5)
+            console.log(papagaio)
+            papagaio.fly()
+            let ostrich = new Ostrich()
+            console.log(ostrich)
+            ostrich.burryHead()
+            ostrich.fly()           
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>
