@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            //Creating a literal object in ES5
+
+            var name, age, sex, occupation
+
+            function catchData1() {
+                name = document.getElementById('name').value
+                age = document.getElementById('age').value
+                sex = document.getElementById('sex').value
+                occupation = document.getElementById('occupation').value
+              
+                let literal_object1 = {
+                    name: name,
+                    age: age,
+                    sex: sex,
+                    occupation: occupation,
+                    showSummary: function() {
+                    console.log(`Objeto 1 - Nome: ${this.name}, Idade: ${this.age}, Sexo: ${this.sex}, Profissão: ${this.occupation}`)
+                    } 
+                }
+                console.log(literal_object1)
+                literal_object1.showSummary()
+            }
+
+
+            //Creating a literal object in ES6
+
+            function catchData2() {
+                name = document.getElementById('name').value
+                age = document.getElementById('age').value
+                sex = document.getElementById('sex').value
+                occupation = document.getElementById('occupation').value
+              
+                let literal_object2 = {
+                    //if the pair and variable has a same name you should type the name a once.
+                    name,
+                    age,
+                    sex,
+                    occupation,
+                    showSummary() {
+                    console.log(`Objeto 2 - Nome: ${this.name}, Idade: ${this.age}, Sexo: ${this.sex}, Profissão: ${this.occupation}`)
+                    } 
+                }
+                console.log(literal_object2)
+                literal_object2.showSummary()
+            }
+
+		</script>
+
+	</head>
+	<body>
+
+		<form action="/action_page.php">
+            Nome: 
+            <input type="text" name="name" id="name">
+            <br>
+            Idade: 
+            <input type="text" name="age" id="age">
+            Sexo: 
+            <select name="sex" id="sex">
+                <option>Selecione</option>
+                <option value="male">Masculino</option>
+                <option value="female">Feminino</option>
+              </select>
+            <br>
+            Profissão: 
+            <input type="text" name="occupation" id="occupation">
+            <br>
+            <input type="button" onclick="catchData1()" value="Enviar1">
+            <input type="button" onclick="catchData2()" value="Enviar2">
+        </form> 
+		
+	</body>
+</html>
