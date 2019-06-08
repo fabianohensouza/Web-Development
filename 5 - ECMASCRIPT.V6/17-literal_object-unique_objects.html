@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            let signature = {
+                clientId: 1000,
+                description: 'Acesso a internet.',
+                status() {
+                    console.log('Ativo')
+                }
+            }
+
+            console.log(signature.description)
+            
+            let y = signature
+            //The attribute description to object signature and y is the same
+            y.description = 'Acesso a Sistemas'
+            console.log(y.description)
+            console.log(signature.description)
+
+		</script>
+
+	</head>
+	<body>
+		
+	</body>
+</html>

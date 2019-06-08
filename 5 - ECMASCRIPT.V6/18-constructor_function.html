@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            let Car = function() {
+                this.collor = 'Amarelo'
+                this.model = 'Chevette'
+                this.currentySpeed = 165
+                this.maxSpeed = 180
+                
+                this.accelerate = function() {
+                    let currentySpeed = this.getCurrentSpeed() + 10
+                    console.log(`Acelerando para ${this.setCurrentSpeed(currentySpeed)} Km/h.`)
+                }
+
+                this.getCurrentSpeed = function() {
+                    return this.currentySpeed
+                }
+
+                this.setCurrentSpeed = function(currentySpeed) {
+                    this.currentySpeed = currentySpeed
+                    if (this.currentySpeed > 180 ) {
+                        this.currentySpeed = 180
+                    }
+
+                    return this.currentySpeed
+                }
+            }
+
+            let car = new Car()
+            console.log(car)
+            console.log(`A velocidade atual é ${car.getCurrentSpeed()} Km/h.`)
+            car.accelerate()
+
+		</script>
+
+	</head>
+	<body>
+		
+	</body>
+</html>

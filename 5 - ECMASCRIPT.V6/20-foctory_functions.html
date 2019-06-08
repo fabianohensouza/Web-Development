@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+            /*
+            let Bicycle1 = {
+                collor: 'Branca',
+                gear: 'Única',
+                whellSize: 21,
+                pedal() {console.log('Pedalando.')}
+            }
+        
+            let Bicycle2 = {
+                collor: 'Azul',
+                gear: '27',
+                whellSize: 19,
+                pedal() {console.log('Pedalando.')}
+            }
+
+            console.log(Bicycle1)
+            Bicycle1.pedal()
+            console.log(Bicycle2)
+            Bicycle2.pedal()
+            */
+
+            //Creating a Factory Function
+            let bicycles = []
+            let BicycleFactory = function(cod) {
+                return {
+                    cod,
+                    collor: document.getElementById('collor').value,
+                    gear: document.getElementById('gear').value,
+                    whellSize: document.getElementById('whell').value,
+                    pedal() {console.log('Pedalando.')}
+                }
+            }
+            
+            function buildingBicycle() {
+                bicycles.push(BicycleFactory(bicycles.length))   
+                console.log(bicycles[-1])   
+                console.log(bicycles.length)
+                bicycles[bicycles.length - 1].pedal() 
+                document.getElementById("input").innerHTML = ('A bicicleta ' + bicycles[bicycles.length - 1].cod + ' foi criada')         
+            } 
+
+		</script>
+
+	</head>
+	<body>
+
+            <form action="/action_page.php">
+                Cor: 
+                <input type="text" name="collor" id="collor">
+                <br>
+                Marcha: 
+                <select name="gear" id="gear">
+                    <option>Selecione</option>
+                    <option value="Única">Única</option>
+                    <option value="12">12</option>
+                    <option value="18">18</option>
+                    <option value="21">21</option>
+                    <option value="24">24</option>
+                    <option value="27">27</option>
+                  </select>
+                <br>
+                Aro: 
+                <input type="text" name="whell" id="whell">
+                <br>
+                <input type="button" onclick="buildingBicycle()" value="Montar Bicicleta">
+            </form> 
+            <br>
+            <p id="input"></p>
+		
+	</body>
+</html>

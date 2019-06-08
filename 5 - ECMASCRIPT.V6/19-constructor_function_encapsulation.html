@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+	
+            let Car = function() {
+                // Creating a variable with var it will be hidden to access out of the function 
+                // This variable will be created in the function context
+                var maxSpeed = 180
+                var mileage = 0
+                this.collor = 'Amarelo'
+                this.model = 'Chevette'
+                this.currentySpeed = 0
+                
+                this.accelerate = function() {
+                    let currentySpeed = this.getCurrentSpeed() + 15
+                    console.log(`Acelerando para ${this.setCurrentSpeed(currentySpeed)} KM/h.`)
+                    console.log(`${setMileage(this.currentySpeed)} KMs rodados.`)
+                }
+
+                this.getCurrentSpeed = function() {
+                    return this.currentySpeed
+                }
+
+                this.setCurrentSpeed = function(currentySpeed) {
+                    this.currentySpeed = currentySpeed
+                    if (this.currentySpeed > maxSpeed ) {
+                        this.currentySpeed = 180
+                    }
+
+                    return this.currentySpeed
+                }
+
+                var setMileage = function(speed) {
+                    mileage += (speed/100) * 5
+                    return mileage.toFixed(2)
+                }
+            }
+
+            let car = new Car()
+            console.log(car)
+            console.log(`A velocidade atual é ${car.getCurrentSpeed()} Km/h.`)
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+            car.accelerate()
+
+		</script>
+
+	</head>
+	<body>
+		
+	</body>
+</html>
