@@ -29,6 +29,7 @@
 
             //Creating a Factory Function
             let bicycles = []
+            let message = '<br>'
             let BicycleFactory = function(cod) {
                 return {
                     cod,
@@ -43,8 +44,9 @@
                 bicycles.push(BicycleFactory(bicycles.length))   
                 console.log(bicycles[-1])   
                 console.log(bicycles.length)
-                bicycles[bicycles.length - 1].pedal() 
-                document.getElementById("input").innerHTML = ('A bicicleta ' + bicycles[bicycles.length - 1].cod + ' foi criada')         
+                bicycles[bicycles.length - 1].pedal()
+                message += ('A bicicleta ' + bicycles[bicycles.length - 1].cod + ' foi criada.<br>')
+                document.getElementById("input").innerHTML = (message)         
             } 
 
 		</script>

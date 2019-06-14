@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+        //All bellow are child of prototype object
+        let animal = {
+            attr1: 'a'
+        }
+
+        //changing the prototype point of the object
+        let vertebrate = {
+            __proto__: animal,
+            attr2: 'b'            
+        }
+
+        let bird = {
+            __proto__: vertebrate,
+            attr3: 'c'            
+        }
+
+        let eagle = {
+            __proto__: bird,
+            attr3: 'X',   
+            attr4: 'd'       
+        }
+
+        //defining a attribute default aplied in all objects of the application
+        Object.prototype.attr_default = 'Default'
+
+        console.log(bird.attr1, attr_default)
+        console.log(bird.attr2, attr_default)
+        console.log(bird.attr3, attr_default)
+        console.log(eagle.attr1, eagle.attr2, eagle.attr3, eagle.attr4, attr_default)
+
+        console.log(animal)
+        console.log(vertebrate)
+        console.log(bird)
+        console.log(eagle)
+		</script>
+
+	</head>
+	<body>
+
+           
+		
+	</body>
+</html>

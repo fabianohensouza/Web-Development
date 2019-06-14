@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+        //Create airplane by a literal object
+        let a1 = {
+            
+            collor: 'Branco',
+            model: 'AirBus A380',
+            takeOff: function(){
+                console.log('Levantar vôo!')
+            }
+        }   
+
+        //Create airplane by a constructor function
+        let airplaneF = function() {
+            this.collor = 'Azul'
+            this.model = 'Boeing 787'
+            this.takeOff = function(){
+                console.log('Levantar vôo!')
+            }
+        } 
+
+        let a2 = new airplaneF()
+
+        //Create airplane by a class
+        class airplaneC {
+            constructor() {
+                this.collor = 'Vermelho'
+                this.model = 'Embraer E195' 
+            }
+            takeOff(){
+                console.log('Levantar vôo!')
+            }
+        }
+
+        let a3 = new airplaneC()
+
+        console.log(a1)
+        console.log(a2)
+        console.log(a3)
+
+		</script>
+
+	</head>
+	<body>
+
+           
+		
+	</body>
+</html>
