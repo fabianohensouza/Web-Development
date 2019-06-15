@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+            //Rest Context
+            
+            //The function recieve a unique parameter in the array way with all parameters sended
+            function sum(...param) {
+                let result = 0
+                console.log(param)
+
+                /*
+                for( var i in param) {
+                    result += parseInt( param[i] )
+                }*/
+
+                param.forEach( i => result += i)
+
+                return result
+            }
+
+            console.log(sum(3, 2, 8, 9))
+            console.log(sum(3, 2, 8, 9, -78, 88, 125, -200))
+
+            function multiply(m, ...p) {
+                let result = 0
+                console.log(m)
+                console.log(p)
+
+                p.forEach(i => result += m * i)
+                return result
+            }
+
+            console.log(multiply(3, 2, 8, 9, 18))
+        
+		</script>
+
+	</head>
+	<body>
+
+           
+		
+	</body>
+</html>

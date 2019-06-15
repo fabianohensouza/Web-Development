@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+            //Destructuring is expression that allows us to extract data from arrays, objects, maps and sets
+            //Array
+
+			let fruits = ['Fruta1', 'Fruta2', 'Fruta3', 'Fruta4', 'Fruta5', 'Fruta6']
+
+			//Destructuring
+			let [a, b, , c] = fruits //Jumping the third item
+			let [y = 'Abacaxi', , , , , , d = 'Abacaxi'] = fruits //Attributing a value that not exists and send a default value if undefined
+
+			console.log(a, b, c)
+			console.log(y, d)
+
+			let things = [['B1', 'B2', 'B3', 'B4'], ['C1', 'C2', 'C3'], ['A1', 'A2', 'A3', 'A9']]
+			//Recover C3
+			let [,[, ,t]] = things
+			console.log(t)
+			//Recover B4 and A9
+			let [[,,,b4],,[,,,a9]] = things
+			console.log(b4,a9)
+        
+		</script>
+
+	</head>
+	<body>
+
+           
+		
+	</body>
+</html>

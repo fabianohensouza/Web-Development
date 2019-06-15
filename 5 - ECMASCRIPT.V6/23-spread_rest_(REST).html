@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+            //Spread Context
+            
+            //String
+            let articleTitle = 'Como utilizar o operador rest/spread'
+
+            console.log(articleTitle)
+            console.log(...articleTitle)
+            
+            //Spread a string inside a array
+            console.log([...articleTitle])
+
+            //Replacing space for _
+            let string = [...articleTitle]
+            for(var i = 0; i < string.length; i ++) {
+                if (string[i] == ' ') {
+                    string[i] = '_'
+                }
+            }
+
+            console.log(string)
+
+            //Array
+            let courseList1 = ['Curso 1', 'Curso 2', 'Curso 3']
+            let courseList2 = ['Curso 4', 'Curso 5', 'Curso 6']
+            //spreading the others arrays inside one array
+            let completeCourseList = [...courseList1, ...courseList2, 'Curso 7', 'Curso 8']
+            console.log(completeCourseList)
+
+            //Object
+            let people = {name: 'João', age: 27}
+            let clone = {address: 'Rua Abc', ...people}
+
+            console.log(clone)
+        
+		</script>
+
+	</head>
+	<body>
+
+           
+		
+	</body>
+</html>
