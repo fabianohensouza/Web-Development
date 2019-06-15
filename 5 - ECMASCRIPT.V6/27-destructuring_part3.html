@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+        <script type="text/babel">
+        
+            //Destructuring is expression that allows us to extract data from arrays, objects, maps and sets
+            //Array
+            let arr = [10, 20, 30, 40]
+
+            function testArray([a, ,c]) {
+                console.log(a, c)
+            }
+
+            //Call the function passing a array like a parameter
+            testArray(arr)
+
+            //Object
+            let obj = {
+                a: 1,
+                b: 2,
+                c: 3,
+                d: 4,
+                e: {
+                    e1: 5,
+                    e2: 6
+                }
+            }
+
+            function testObject({a,c,e:{e1, e2: last}}) {
+                console.log(a, c, e1, last)
+            }
+            testObject(obj)
+        
+		</script>
+
+	</head>
+	<body>
+
+           
+		
+	</body>
+</html>

@@ -25,6 +25,10 @@
             //Using the other name of the attributes
             let { description: d, price: p} = product
             console.log(d, p)
+
+            //Extracting values of of objects inside other objects
+            let { details: {vendor:v, model}} = product
+            console.log( v, model)
           
         
 		</script>
