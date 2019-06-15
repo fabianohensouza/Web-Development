@@ -11,12 +11,21 @@
 
             let product = {
                 description: 'Notebook',
-                price: 1899,00
+                price: 1899,
                 details: {
                    vendor: 'Dell Computadores',
                    model: 'Vostro' 
                 }
             }
+
+            //Extract sttributes of a object
+            //Using the same name of the attributes
+            let { description, price} = product
+            console.log(description, price)
+            //Using the other name of the attributes
+            let { description: d, price: p} = product
+            console.log(d, p)
+          
         
 		</script>
 
