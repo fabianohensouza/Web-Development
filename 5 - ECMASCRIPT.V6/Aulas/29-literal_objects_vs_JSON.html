@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>EcmaScript</title>
+		<script src="https://unpkg.com/@babel/standalone@7.4.4/babel.min.js"></script>
+
+		<script type="text/babel">
+            
+            //Creating a literal object
+            let product = {
+                category: 'Eletrodoméstico',
+                description: 'Geladeira',
+                price: 1999.00
+            }
+            console.log(product)
+
+            //Creating a JSON object - Writed like a string
+            let productJSON = "{ 'category': 'Eletrodoméstico', 'description': 'Geladeira', 'price': '1999.00'}"
+            console.log(productJSON)
+
+            //Converting a literal object in a JSON
+            let productConverted = JSON.stringify(product)
+            console.log(productConverted)
+
+            //Converting a JSON in a literal object
+            let jsonConverted = JSON.parse(productJSON)
+            //console.log(jsonConverted)
+
+		</script>
+
+	</head>
+	<body>
+
+		<div id="output"></div>
+		
+	</body>
+</html>

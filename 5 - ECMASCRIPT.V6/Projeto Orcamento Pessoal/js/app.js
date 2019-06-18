@@ -7,7 +7,41 @@ class Expense {
         this.description = description
         this.value = value
     }
+
+    validateData() {
+        for(let i in this) {
+            if(this[i] == '' || this[i] == undefined || this[i] == null ){
+                return false
+            }
+            
+            return true
+        }
+    }
 }
+
+class Db {
+
+    constructor() {
+        let id = localStorage.getItem('id')
+        console.log(id)
+        if (id === null) {
+            localStorage.setItem('id', 0)
+        }
+    }
+
+    getNextId() {
+        let nextId = localStorage.getItem('id')
+        return parseInt(nextId) + 1
+    }
+
+    record(data) {
+        let id = this.getNextId()
+        localStorage.setItem(id, JSON.stringify(data))
+        localStorage.setItem('id', id)
+    }
+}
+
+let db = new Db()
 
 function recordExpense() {
     let year = document.getElementById('year')
@@ -18,9 +52,12 @@ function recordExpense() {
     let value = document.getElementById('value')
 
     let expense = new Expense(year.value, month.value, day.value, type.value, description.value, value.value)
-    record(expense)
+    if (expense.validateData()) {
+        //db.record(expense)
+        alert('Dados Corretos!')
+    } else {
+        alert('Dados Inválidos!')
+
+    }
 }
 
-function record(data) {
-    localStorage.setItem('Expense', JSON.stringify(data))
-}
