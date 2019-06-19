@@ -53,11 +53,12 @@ function recordExpense() {
 
     let expense = new Expense(year.value, month.value, day.value, type.value, description.value, value.value)
     if (expense.validateData()) {
-        //db.record(expense)
-        alert('Dados Corretos!')
+        db.record(expense)
+        //Calling the modal with id recordError
+        $('#recordSuccess').modal('show')
     } else {
-        alert('Dados Inválidos!')
-
+        //Calling the modal with id recordError
+        $('#recordError').modal('show')
     }
 }
 
