@@ -88,7 +88,7 @@
         </div>
         
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Dia" id="day" />
+          <input type="text" class="form-control" placeholder="Dia" id="day" onblur="validateInput('day')" />
         </div>
 
         <div class="col-md-6">
@@ -106,11 +106,11 @@
 
       <div class="row">
         <div class="col-md-8">
-          <input type="text" class="form-control" placeholder="Descrição" id="description" />
+          <input type="text" class="form-control" placeholder="Descrição" id="description" onblur="validateInput('desc')" />
         </div>
 
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Valor" id="value" />
+          <input type="text" class="form-control" placeholder="Valor" id="value" onblur="validateInput('value')" />
         </div>
 
         <div class="col-md-2 d-flex justify-content-end">
@@ -120,47 +120,20 @@
         </div>
       </div>
     </div>
-    
-    <!-- Button trigger modal 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recordError">
-      Launch demo modal
-    </button>-->
 
-    <!-- Modal Error -->
-    <div class="modal fade" id="recordError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header text-danger">
-            <h5 class="modal-title" id="exampleModalLabel">Erro na gravação dos dados.</h5>
+          <div id="header" class="modal-header">
+            <h5 id="title" class="modal-title"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            Existem campo obrigatórios que não foram preenchidos.
-          </div>
+          <div id="body" class="modal-body"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar e corrigir</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Succes -->
-    <div class="modal fade" id="recordSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-primary">
-            <h5 class="modal-title" id="exampleModalLabel">Gravação concluída</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              A despesa foi cadastrada com sucesso.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
+            <button id="button" type="button" class="btn" data-dismiss="modal"></button>
           </div>
         </div>
       </div>
