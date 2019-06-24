@@ -38,6 +38,24 @@ class Db {
         localStorage.setItem(id, JSON.stringify(data))
         localStorage.setItem('id', id)
     }
+
+    recoverAllRegistry() {
+
+        //Creating a expenses array
+        let expenses = Array()
+
+        let id = localStorage.getItem('id')
+        //Recover all expenses enrolled in localstorage
+        for (let i = 1; i <= id; i ++){
+
+            //Recorver the expenses
+            let expense = JSON.parse(localStorage.getItem(i))
+            if ( expense !== null ) {
+                expenses.push(expense)
+            }
+        }
+        return expenses
+    }
 }
 
 let db = new Db()
@@ -124,5 +142,11 @@ function recordExpense() {
     }
     //Calling the modal with the parameters
     showModal(result, title, body)
+}
+
+function loadExpensesList() {
+    let expenses = Array()
+    expenses = db.recoverAllRegistry()
+    console.log(expenses)
 }
 
