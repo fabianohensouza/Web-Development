@@ -10,10 +10,10 @@ class Expense {
 
     validateData() {
         for(let i in this) {
+            console.log(this[i])
             if(this[i] == '' || this[i] == undefined || this[i] == null ){
                 return false
             }
-            
             return true
         }
     }
@@ -118,6 +118,15 @@ function showModal(result, title, body) {
     $('#showModal').modal('show')
 }
 
+function clearFormFields() {
+    year.value = ''
+    month.value = ''
+    day.value = ''
+    type.value = ''
+    description.value = ''
+    value.value = ''
+}
+
 function recordExpense() {
     let year = document.getElementById('year')
     let month = document.getElementById('month')
@@ -134,6 +143,10 @@ function recordExpense() {
         result = true
         title = 'Gravação concluída!'
         body = 'A despesa foi cadastrada com sucesso.'
+
+        //Cleaning all data in the Form Fields
+        clearFormFields()
+
     } else {
         //Set parameters to call the modal with Error
         result = false
@@ -147,6 +160,48 @@ function recordExpense() {
 function loadExpensesList() {
     let expenses = Array()
     expenses = db.recoverAllRegistry()
-    console.log(expenses)
+
+    //Selecting tbody element of the table
+    let expensesList = document.getElementById('expensesList')
+
+    //Wade Espenses array, listing eeach expense in dynamic way
+    expenses.forEach( function(expense){
+        
+        //Creating the table row - tr
+        let line = expensesList.insertRow()
+        //Creating the table data - td
+        line.insertCell(0).innerHTML = `${expense.day}/${expense.month}/${expense.year}`
+        
+        //Adjusting the type
+        switch(expense.type){
+            case '1':
+                line.insertCell(1).innerHTML = 'Alimentação'
+                break
+                
+            case '2':
+                    line.insertCell(1).innerHTML = 'Educação'
+                    break
+                
+            case '3':
+                    line.insertCell(1).innerHTML = 'Lazer'
+                    break
+                
+            case '4':
+                    line.insertCell(1).innerHTML = 'Saúde'
+                    break
+                
+            case '5':
+                    line.insertCell(1).innerHTML = 'Transporte'
+                    break
+                
+            case '6':
+                    line.insertCell(1).innerHTML = 'Outros'
+                    break
+                                    
+        }
+        //line.insertCell(1).innerHTML = expense.type
+        line.insertCell(2).innerHTML = expense.description
+        line.insertCell(3).innerHTML = parseFloat(expense.value).toFixed(2)
+    })
 }
 
