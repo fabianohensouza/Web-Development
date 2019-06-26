@@ -10,12 +10,21 @@ class Expense {
 
     validateData() {
         for(let i in this) {
-            console.log(this[i])
+
             if(this[i] == '' || this[i] == undefined || this[i] == null ){
                 return false
             }
-            return true
         }
+
+        let insertedDay = parseInt(document.getElementById('day').value)
+        let insertedDesc = document.getElementById('description').value
+        let insertedValue = parseFloat(document.getElementById('value').value)
+
+        if (!( insertedDay >= 1 && insertedDay <= 31 ) || (insertedDesc == '') || ( insertedValue < 0 || isNaN(value)) ) {
+            return false
+        }
+
+        return true
     }
 }
 
@@ -59,46 +68,6 @@ class Db {
 }
 
 let db = new Db()
-
-function validateInput(type) {
-    switch (type) {
-        case 'day':
-            let day = parseInt(document.getElementById('day').value)
-            console.log(day)
-            if ( day < 1 && day ==NaN) {
-                console.log('Dia')
-                /*result = false
-                title = 'Dados incorretos!'
-                body = 'O dia inserido é inválido.'
-                showModal(result, title, body)*/
-            }
-                break
-        
-            case 'desc':
-                let desc = document.getElementById('description').value
-                console.log(desc)
-                if (desc == '') {
-                    console.log('Descrição')
-                    /*result = false
-                    title = 'Dados incorretos!'
-                    body = 'Por favor, insira uma descrição da despesa'
-                    showModal(result, title, body)*/
-                }
-                break
-        
-            case 'value':
-                let value = parseFloat(document.getElementById('value').value)
-                console.log(value)
-                if ( value < 0 && day ==NaN) {
-                    console.log('Valor')
-                    /*result = false
-                    title = 'Dados incorretos!'
-                    body = 'O valor inserido é inválido.'
-                    showModal(result, title, body)*/
-                }
-                break
-    }
-}
 
 function showModal(result, title, body) {
 
@@ -151,57 +120,52 @@ function recordExpense() {
         //Set parameters to call the modal with Error
         result = false
         title = 'Erro na gravação dos dados!'
-        body = 'Existem campo obrigatórios que não foram preenchidos.'
+        body = 'Existem campo obrigatórios que não foram preenchidos corretamente.'
     }
     //Calling the modal with the parameters
     showModal(result, title, body)
 }
 
-function loadExpensesList() {
+function formatNumbers(type, number) {
+    switch (type) {
+        case 'int':
+            return ("0" + parseInt(number)).slice(-2)
+            break
+
+        case 'float':
+            return parseFloat(number).toFixed(2)
+            break
+    }
+}
+
+function showExpensesTable() {
     let expenses = Array()
     expenses = db.recoverAllRegistry()
 
     //Selecting tbody element of the table
     let expensesList = document.getElementById('expensesList')
 
-    //Wade Espenses array, listing eeach expense in dynamic way
+    //Wade Espenses array, listing each expense in dynamic way
     expenses.forEach( function(expense){
         
-        //Creating the table row - tr
-        let line = expensesList.insertRow()
-        //Creating the table data - td
-        line.insertCell(0).innerHTML = `${expense.day}/${expense.month}/${expense.year}`
-        
-        //Adjusting the type
-        switch(expense.type){
-            case '1':
-                line.insertCell(1).innerHTML = 'Alimentação'
-                break
-                
-            case '2':
-                    line.insertCell(1).innerHTML = 'Educação'
-                    break
-                
-            case '3':
-                    line.insertCell(1).innerHTML = 'Lazer'
-                    break
-                
-            case '4':
-                    line.insertCell(1).innerHTML = 'Saúde'
-                    break
-                
-            case '5':
-                    line.insertCell(1).innerHTML = 'Transporte'
-                    break
-                
-            case '6':
-                    line.insertCell(1).innerHTML = 'Outros'
-                    break
-                                    
-        }
-        //line.insertCell(1).innerHTML = expense.type
-        line.insertCell(2).innerHTML = expense.description
-        line.insertCell(3).innerHTML = parseFloat(expense.value).toFixed(2)
+
+    //Adjusting the type
+    let expenseTypes = ['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
+    let expenseCode = parseInt(expense.type) - 1
+            
+    //Adjusting the numbers to show
+    expense.day = formatNumbers('int', expense.day)
+    expense.month = formatNumbers('int', expense.month)
+    expense.value = formatNumbers('float', expense.value)
+
+    //Creating the table row - tr
+    let tableLine = expensesList.insertRow()
+
+    //Creating the table data - td
+    tableLine.insertCell(0).innerHTML = `${expense.day}/${expense.month}/${expense.year}`
+    tableLine.insertCell(1).innerHTML = expenseTypes[ expenseCode ] 
+    tableLine.insertCell(2).innerHTML = expense.description
+    tableLine.insertCell(3).innerHTML = expense.value
     })
 }
 
