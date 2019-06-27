@@ -1,3 +1,8 @@
+//Creatinga tooltip code
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+  });
+
 class Expense {
     constructor(year, month, day, type, description, value) {
         this.year = year
@@ -64,6 +69,10 @@ class Db {
             }
         }
         return expenses
+    }
+
+    search(expense) {
+        console.log(expense)
     }
 }
 
@@ -147,7 +156,7 @@ function showExpensesTable() {
 
     //Wade Espenses array, listing each expense in dynamic way
     expenses.forEach( function(expense){
-        
+       
 
     //Adjusting the type
     let expenseTypes = ['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
@@ -167,5 +176,17 @@ function showExpensesTable() {
     tableLine.insertCell(2).innerHTML = expense.description
     tableLine.insertCell(3).innerHTML = expense.value
     })
+}
+
+function searchExpense() {
+    let year = document.getElementById('year').value
+    let month = document.getElementById('month').value
+    let day = document.getElementById('day').value
+    let type = document.getElementById('type').value
+    let description = document.getElementById('description').value
+    let value = document.getElementById('value').value
+
+    let expense = new Expense(year, month, day, type, description, value)
+    db.search(expense)
 }
 

@@ -11,6 +11,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Bootstrap fim -->
 
+    <!-- Insert Style -->
+    <link rel="stylesheet" href="css/style.css">
+
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -54,7 +57,7 @@
 
       <div class="row mb-2">
         <div class="col-md-2">
-          <select class="form-control" id="ano">
+          <select class="form-control" id="year">
             <option value="">Ano</option>
             <option value="2018">2018</option>
             <option value="2016">2016</option>
@@ -70,7 +73,7 @@
         </div>
 
         <div class="col-md-2">
-          <select class="form-control" id="mes">
+          <select class="form-control" id="month">
             <option value="">Mês</option>
             <option value="1">Janeiro</option>
             <option value="2">Fevereiro</option>
@@ -88,12 +91,12 @@
         </div>
         
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Dia" id="dia" />
+          <input type="text" class="form-control" placeholder="Dia" id="day" />
         </div>
 
         <div class="col-md-6">
-          <select class="form-control" id="tipo">
-            <option>Tipo</option>
+          <select class="form-control" id="type">
+            <option value="">Tipo</option>
             <option value="1">Alimentação</option>
             <option value="2">Educação</option>
             <option value="3">Lazer</option>
@@ -106,16 +109,22 @@
 
       <div class="row  mb-5">
         <div class="col-md-8">
-          <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
+          <input type="text" class="form-control" placeholder="Descrição" id="description" />
         </div>
 
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Valor" id="valor" />
+          <input type="text" class="form-control" placeholder="Valor" id="value" />
         </div>
 
-        <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary">
+        <div class="col-md-1 d-flex justify-content-end" data-toggle="tooltip" title="Pesquisar">
+          <button type="button" class="btn btn-primary" onclick="searchExpense()">
             <i class="fas fa-search"></i>
+          </button>          
+        </div>
+
+        <div class="col-md-1 d-flex justify-content-end" data-toggle="tooltip" title="Limpar pesquisa">
+          <button type="button" class="btn btn-secondary" onclick="clearFormFields()">
+            <i class="fas fa-trash-alt"></i>           
           </button>
         </div>
       </div>
