@@ -72,7 +72,10 @@ class Db {
     }
 
     search(expense) {
-        console.log(expense)
+        let filteredExpenses = Array()
+        filteredExpenses = this.recoverAllRegistry()
+        filteredExpenses = filterExpenses(expense, filteredExpenses)
+        return filteredExpenses
     }
 }
 
@@ -103,6 +106,8 @@ function clearFormFields() {
     type.value = ''
     description.value = ''
     value.value = ''
+
+    showExpensesTable()
 }
 
 function recordExpense() {
@@ -147,12 +152,15 @@ function formatNumbers(type, number) {
     }
 }
 
-function showExpensesTable() {
-    let expenses = Array()
-    expenses = db.recoverAllRegistry()
+function showExpensesTable(expenses = Array(), filter = false) {
+
+    if (expenses.length == 0 && filter == false) {
+        expenses = db.recoverAllRegistry()
+    }
 
     //Selecting tbody element of the table
     let expensesList = document.getElementById('expensesList')
+    expensesList.innerHTML = ''
 
     //Wade Espenses array, listing each expense in dynamic way
     expenses.forEach( function(expense){
@@ -187,6 +195,41 @@ function searchExpense() {
     let value = document.getElementById('value').value
 
     let expense = new Expense(year, month, day, type, description, value)
-    db.search(expense)
+    let expenses = db.search(expense)
+    showExpensesTable(expenses, true)
+}
+
+function filterExpenses(expense, filteredExpenses) {
+    //Filtering Year
+    if (expense.year != '') {
+        filteredExpenses = filteredExpenses.filter(d => d.year == expense.year)
+    }
+
+    //Filtering Month
+    if (expense.month != '') {
+        filteredExpenses = filteredExpenses.filter(d => d.month == expense.month)
+    }
+
+    //Filtering Day
+    if (expense.day != '') {
+        filteredExpenses = filteredExpenses.filter(d => d.day == expense.day)
+    }
+
+    //Filtering Type
+    if (expense.type != '') {
+        filteredExpenses = filteredExpenses.filter(d => d.type == expense.type)
+    }
+
+    //Filtering Description
+    if (expense.description != '') {
+        filteredExpenses = filteredExpenses.filter(d => d.description == expense.description)
+    }
+
+    //Filtering Value
+    if (expense.value != '') {
+        filteredExpenses = filteredExpenses.filter(d => d.value == expense.value)
+    }
+    
+    return filteredExpenses
 }
 
