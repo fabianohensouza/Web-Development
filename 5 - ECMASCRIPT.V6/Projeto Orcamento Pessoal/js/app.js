@@ -183,6 +183,12 @@ function showExpensesTable(expenses = Array(), filter = false) {
     tableLine.insertCell(1).innerHTML = expenseTypes[ expenseCode ] 
     tableLine.insertCell(2).innerHTML = expense.description
     tableLine.insertCell(3).innerHTML = expense.value
+
+    //Creating a deletion buton for the expenses
+    let deleteButton = document.createElement("button")
+    deleteButton.className = 'btn btn-danger'
+    deleteButton.innerHTML = '<i class="fas fa-times"></i>'
+    tableLine.insertCell(4).append(deleteButton)
     })
 }
 
