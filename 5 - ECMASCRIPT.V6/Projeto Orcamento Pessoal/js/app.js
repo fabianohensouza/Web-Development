@@ -65,6 +65,9 @@ class Db {
             //Recorver the expenses
             let expense = JSON.parse(localStorage.getItem(i))
             if ( expense !== null ) {
+                
+                //Including the id information in the variable expense and then into a array of expenses
+                expense.id = i
                 expenses.push(expense)
             }
         }
@@ -77,13 +80,19 @@ class Db {
         filteredExpenses = filterExpenses(expense, filteredExpenses)
         return filteredExpenses
     }
+
+    removeExpense(id) {
+        localStorage.removeItem(id)
+
+        //Call the modal to show a warning in the screen
+        showModal(true, 'Despesa removida com sucesso', 'Após removida a despesa não pode ser recuperada.')
+    }
 }
 
 let db = new Db()
 
 function showModal(result, title, body) {
 
-    console.log(result, title, body)
     document.getElementById("title").innerHTML = title
     document.getElementById("body").innerHTML = body
 
@@ -187,7 +196,17 @@ function showExpensesTable(expenses = Array(), filter = false) {
     //Creating a deletion buton for the expenses
     let deleteButton = document.createElement("button")
     deleteButton.className = 'btn btn-danger'
-    deleteButton.innerHTML = '<i class="fas fa-times"></i>'
+    deleteButton.innerHTML = '<span  data-toggle="tooltip" title="Deletar despesa"> <i class="fas fa-times"></i></span>'
+    deleteButton.id = 'expense_id_' + expense.id
+    deleteButton.onclick = function() { 
+    
+        //Formating ID removing yhe prefix
+        let id = this.id.replace('expense_id_', '')
+        db.removeExpense(id)
+        
+        //Reload the page to update the expense list
+        window.location.reload()
+    }
     tableLine.insertCell(4).append(deleteButton)
     })
 }
