@@ -33,13 +33,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="index.html">Cadastro</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="consulta.html">Consulta</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="estatisticas.html">Consulta</a>
             </li>
           </ul>
@@ -51,11 +51,30 @@
     <div class="container">
       <div class="row">
         <div class="col mb-5">
-          <h1 class="display-4">Registro de nova despesa</h1>
+          <h1 class="display-4">Estatísticas de despesas</h1>
         </div>
       </div>
 
-      <div class="row mb-2">
+        <div class="row mb-1">  
+            <div class="col-md-6">
+                <select class="form-control" id="statistic">
+                <option value="">Selecione uma Estatísticas</option>
+                <option value="expenseforyear">Gasto por ano</option>
+                <option value="expenseformonth">Gasto por mês</option>
+                <option value="mostexpensive">Despesa mais cara</option>
+                <option value="mostcheaper">Despesa mais barata</option>
+                </select>
+            </div>
+
+            <div class="col-md-1 d-flex justify-content-start" data-toggle="tooltip" title="Gerar">
+                <button type="button" class="btn btn-primary" onclick="generateStatistic()">
+                    <i class="fas fas fa-play"></i>
+                </button>
+            </div>
+       </div> 
+    </div>
+
+      <!--div class="row mb-2">
         <div class="col-md-2">
           <select class="form-control" id="year">
             <option value="">Ano</option>
@@ -124,7 +143,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div-->
 
     <!-- Modal -->
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

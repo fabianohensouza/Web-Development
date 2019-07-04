@@ -202,13 +202,25 @@ function showExpensesTable(expenses = Array(), filter = false) {
     
         //Formating ID removing yhe prefix
         let id = this.id.replace('expense_id_', '')
+        //Call the function to remove the expense selected
         db.removeExpense(id)
-        
         //Reload the page to update the expense list
         window.location.reload()
     }
     tableLine.insertCell(4).append(deleteButton)
     })
+}
+
+function loadExpenses() {
+    let year = document.getElementById('year').value
+    let month = document.getElementById('month').value
+    let day = document.getElementById('day').value
+    let type = document.getElementById('type').value
+    let description = document.getElementById('description').value
+    let value = document.getElementById('value').value
+
+    let expense = new Expense(year, month, day, type, description, value)
+    return expense
 }
 
 function searchExpense() {
@@ -256,5 +268,16 @@ function filterExpenses(expense, filteredExpenses) {
     }
     
     return filteredExpenses
+}
+
+function generateStatistic() {
+    let statistic = document.getElementById('statistic').value
+    if (statistic == '') {
+        //Call the modal to show a warning in the screen
+        showModal(false, 'Opção Inválida', 'Selecione uma opção na lista abaixo.')
+        return
+    }
+    let expenses = db.recoverAllRegistry()
+    console.log(expenses)
 }
 
