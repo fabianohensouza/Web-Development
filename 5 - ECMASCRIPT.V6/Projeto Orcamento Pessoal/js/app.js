@@ -89,6 +89,16 @@ class Db {
     }
 }
 
+class Statistics {
+    constructor() {
+        let id = localStorage.getItem('id')
+        }
+
+        expenseForYear() {
+            let yearList = { year15 : 0, year16 : 0, year17 : 0, year18 : 0, year19 : 0, yearyear : 0, year21 : 0, year22 : 0, year23 : 0, year24 : 0}
+        }
+}
+
 let db = new Db()
 
 function showModal(result, title, body) {
@@ -278,6 +288,5 @@ function generateStatistic() {
         return
     }
     let expenses = db.recoverAllRegistry()
-    console.log(expenses)
 }
 
