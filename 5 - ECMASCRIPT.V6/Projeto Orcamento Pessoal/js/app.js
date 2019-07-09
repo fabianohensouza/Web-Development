@@ -89,17 +89,27 @@ class Db {
     }
 }
 
+let db = new Db()
+
 class Statistics {
     constructor() {
-        let id = localStorage.getItem('id')
+
+
         }
 
-        expenseForYear() {
-            let yearList = { year15 : 0, year16 : 0, year17 : 0, year18 : 0, year19 : 0, yearyear : 0, year21 : 0, year22 : 0, year23 : 0, year24 : 0}
+        test() {
+
+        let yearList = { '2015': 0, '2016': 0, '2017': 0, '2018': 0, '2019': 0,
+        '2020': 0, '2021': 0, '2022': 0, '2023': 0, '2024': 0}
+let monthList = {'Janeiro': 0, 'Fevereiro': 0, 'Março': 0, 'Abril': 0, 'Maio': 0, 'Junho': 0,
+        'Julho': 0, 'Agosto': 0, 'Setembro': 0, 'Outubro': 0, 'Novembro': 0, 'Dezembro': 0}
+            console.log(yearList)
+            console.log(monthList)
         }
 }
 
-let db = new Db()
+let statistics = new Statistics()
+statistics.test()
 
 function showModal(result, title, body) {
 
@@ -130,7 +140,7 @@ function clearFormFields() {
 }
 
 function recordExpense() {
-    let year = document.getElementById('year')
+    let year = document.getElementById('20')
     let month = document.getElementById('month')
     let day = document.getElementById('day')
     let type = document.getElementById('type')
@@ -222,7 +232,7 @@ function showExpensesTable(expenses = Array(), filter = false) {
 }
 
 function loadExpenses() {
-    let year = document.getElementById('year').value
+    let year = document.getElementById('20').value
     let month = document.getElementById('month').value
     let day = document.getElementById('day').value
     let type = document.getElementById('type').value
@@ -234,7 +244,7 @@ function loadExpenses() {
 }
 
 function searchExpense() {
-    let year = document.getElementById('year').value
+    let year = document.getElementById('20').value
     let month = document.getElementById('month').value
     let day = document.getElementById('day').value
     let type = document.getElementById('type').value
@@ -287,6 +297,41 @@ function generateStatistic() {
         showModal(false, 'Opção Inválida', 'Selecione uma opção na lista abaixo.')
         return
     }
+
+    showStatisticsTableHeader(statistic)
     let expenses = db.recoverAllRegistry()
+    console.log(expenses)
+}
+
+function showStatisticsTableHeader(statistic) {
+    let tableHeader = document.getElementById('tableHeader')
+    let headerTitle = document.getElementById('headerTitle')
+    let title, hearder
+
+    switch(statistic) {
+
+        case ('expenseforyear'):
+            title = ('Gasto por ano')
+            hearder = ('<th>Ano</th><th>Valor</th>')
+            break
+
+            case ('expenseformonth'):
+            title = ('Gasto por mês')
+            hearder = ('<th>Mês</th><th>Valor</th>')
+            break
+
+            case ('mostexpensive'):
+            title = ('Despesas mais caras')
+            hearder = ('<th>Despesa</th><th>Valor</th><th>Data</th>')
+            break
+
+            case ('mostcheaper'):
+            title = ('Despesas mais baratas')
+            hearder = ('<th>Despesa</th><th>Valor</th><th>Data</th>')
+            break         
+            
+    }
+    headerTitle.innerHTML = title
+    tableHeader.innerHTML = hearder
 }
 
