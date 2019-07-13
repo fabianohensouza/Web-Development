@@ -92,24 +92,34 @@ class Db {
 let db = new Db()
 
 class Statistics {
+
     constructor() {
-
-
+        var yearList = []
+        var monthList = []
+        for (let year = 2015; year <= 2024; year ++) {
+            yearList[year] = 0
         }
 
-        test() {
+        for (let month = 1; month <= 12; month ++) {
+            monthList[month] = 0
+        }
+    }
+    
+    expensesForYear(expenses) {
 
-        let yearList = { '2015': 0, '2016': 0, '2017': 0, '2018': 0, '2019': 0,
-        '2020': 0, '2021': 0, '2022': 0, '2023': 0, '2024': 0}
-let monthList = {'Janeiro': 0, 'Fevereiro': 0, 'Março': 0, 'Abril': 0, 'Maio': 0, 'Junho': 0,
-        'Julho': 0, 'Agosto': 0, 'Setembro': 0, 'Outubro': 0, 'Novembro': 0, 'Dezembro': 0}
+        expenses.forEach( function(expenses, yearList){
+            yearList[expenses.year] += expenses.value
             console.log(yearList)
-            console.log(monthList)
-        }
+        })
+    }
+    
+    expensesForMonth() {
+
+    }
 }
 
 let statistics = new Statistics()
-statistics.test()
+statistics.expensesForYear(db.recoverAllRegistry())
 
 function showModal(result, title, body) {
 
@@ -193,41 +203,40 @@ function showExpensesTable(expenses = Array(), filter = false) {
 
     //Wade Espenses array, listing each expense in dynamic way
     expenses.forEach( function(expense){
-       
+     
+        //Adjusting the type
+        let expenseTypes = ['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
+        let expenseCode = parseInt(expense.type) - 1
+                
+        //Adjusting the numbers to show
+        expense.day = formatNumbers('int', expense.day)
+        expense.month = formatNumbers('int', expense.month)
+        expense.value = formatNumbers('float', expense.value)
 
-    //Adjusting the type
-    let expenseTypes = ['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
-    let expenseCode = parseInt(expense.type) - 1
-            
-    //Adjusting the numbers to show
-    expense.day = formatNumbers('int', expense.day)
-    expense.month = formatNumbers('int', expense.month)
-    expense.value = formatNumbers('float', expense.value)
+        //Creating the table row - tr
+        let tableLine = expensesList.insertRow()
 
-    //Creating the table row - tr
-    let tableLine = expensesList.insertRow()
+        //Creating the table data - td
+        tableLine.insertCell(0).innerHTML = `${expense.day}/${expense.month}/${expense.year}`
+        tableLine.insertCell(1).innerHTML = expenseTypes[ expenseCode ] 
+        tableLine.insertCell(2).innerHTML = expense.description
+        tableLine.insertCell(3).innerHTML = expense.value
 
-    //Creating the table data - td
-    tableLine.insertCell(0).innerHTML = `${expense.day}/${expense.month}/${expense.year}`
-    tableLine.insertCell(1).innerHTML = expenseTypes[ expenseCode ] 
-    tableLine.insertCell(2).innerHTML = expense.description
-    tableLine.insertCell(3).innerHTML = expense.value
-
-    //Creating a deletion buton for the expenses
-    let deleteButton = document.createElement("button")
-    deleteButton.className = 'btn btn-danger'
-    deleteButton.innerHTML = '<span  data-toggle="tooltip" title="Deletar despesa"> <i class="fas fa-times"></i></span>'
-    deleteButton.id = 'expense_id_' + expense.id
-    deleteButton.onclick = function() { 
-    
-        //Formating ID removing yhe prefix
-        let id = this.id.replace('expense_id_', '')
-        //Call the function to remove the expense selected
-        db.removeExpense(id)
-        //Reload the page to update the expense list
-        window.location.reload()
-    }
-    tableLine.insertCell(4).append(deleteButton)
+        //Creating a deletion buton for the expenses
+        let deleteButton = document.createElement("button")
+        deleteButton.className = 'btn btn-danger'
+        deleteButton.innerHTML = '<span  data-toggle="tooltip" title="Deletar despesa"> <i class="fas fa-times"></i></span>'
+        deleteButton.id = 'expense_id_' + expense.id
+        deleteButton.onclick = function() { 
+        
+            //Formating ID removing yhe prefix
+            let id = this.id.replace('expense_id_', '')
+            //Call the function to remove the expense selected
+            db.removeExpense(id)
+            //Reload the page to update the expense list
+            window.location.reload()
+        }
+        tableLine.insertCell(4).append(deleteButton)
     })
 }
 
@@ -322,12 +331,12 @@ function showStatisticsTableHeader(statistic) {
 
             case ('mostexpensive'):
             title = ('Despesas mais caras')
-            hearder = ('<th>Despesa</th><th>Valor</th><th>Data</th>')
+            hearder = ('<th>ID</th><th>Despesa</th><th>Valor</th><th>Data</th>')
             break
 
             case ('mostcheaper'):
             title = ('Despesas mais baratas')
-            hearder = ('<th>Despesa</th><th>Valor</th><th>Data</th>')
+            hearder = ('<th>ID</th><th>Despesa</th><th>Valor</th><th>Data</th>')
             break         
             
     }
