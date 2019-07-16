@@ -92,34 +92,45 @@ class Db {
 let db = new Db()
 
 class Statistics {
-
-    constructor() {
-        var yearList = []
-        var monthList = []
-        for (let year = 2015; year <= 2024; year ++) {
-            yearList[year] = 0
-        }
-
-        for (let month = 1; month <= 12; month ++) {
-            monthList[month] = 0
-        }
-    }
     
     expensesForYear(expenses) {
 
-        expenses.forEach( function(expenses, yearList){
-            yearList[expenses.year] += expenses.value
-            console.log(yearList)
+        var yearList = {}
+        for (let year = 2015; year <= 2024; year ++) {
+            let key = year.toString()
+            let value = { [key] : 0 }
+            yearList = Object.assign(yearList, value)
+        }
+
+        expenses.forEach( function(expenses){
+            yearList[expenses.year] += parseInt(expenses.value)
         })
+
+        yearList = sortExpenses(yearList)
+        console.log(yearList)
     }
     
-    expensesForMonth() {
+    expensesForMonth(expenses) {
 
+        var monthList = []
+        for (let month = 1; month <= 12; month ++) {
+            let key = month.toString()
+            let value = { [key] : 0 }
+            monthList = Object.assign(monthList, value)
+        }
+
+        expenses.forEach( function(expenses){
+            monthList[expenses.month] += parseInt(expenses.value)
+        })
+
+        monthList = sortExpenses(monthList)
+        console.log(monthList)
     }
 }
 
 let statistics = new Statistics()
 statistics.expensesForYear(db.recoverAllRegistry())
+statistics.expensesForMonth(db.recoverAllRegistry())
 
 function showModal(result, title, body) {
 
@@ -342,5 +353,10 @@ function showStatisticsTableHeader(statistic) {
     }
     headerTitle.innerHTML = title
     tableHeader.innerHTML = hearder
+}
+
+function sortExpenses(valueList) {
+    
+    return valueList
 }
 
