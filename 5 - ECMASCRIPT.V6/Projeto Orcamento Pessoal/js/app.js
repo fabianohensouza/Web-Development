@@ -95,7 +95,7 @@ class Statistics {
     
     expensesForYear(expenses) {
 
-        var yearList = {}
+        var yearList = []
         for (let year = 2015; year <= 2024; year ++) {
             let key = year.toString()
             let value = { [key] : 0 }
@@ -107,7 +107,12 @@ class Statistics {
         })
 
         yearList = sortExpenses(yearList)
-        console.log(yearList)
+
+        for (let index = 0; index <= 10; index ++) {
+            console.log(yearList[index], index)
+        }
+
+        printStatistics(yearList)
     }
     
     expensesForMonth(expenses) {
@@ -124,7 +129,12 @@ class Statistics {
         })
 
         monthList = sortExpenses(monthList)
-        console.log(monthList)
+
+        for (let index = 0; index <= 12; index ++) {
+            console.log(monthList[index])
+        }
+
+        printStatistics(monthList)
     }
 }
 
@@ -320,7 +330,6 @@ function generateStatistic() {
 
     showStatisticsTableHeader(statistic)
     let expenses = db.recoverAllRegistry()
-    console.log(expenses)
 }
 
 function showStatisticsTableHeader(statistic) {
@@ -355,8 +364,27 @@ function showStatisticsTableHeader(statistic) {
     tableHeader.innerHTML = hearder
 }
 
+function printStatistics(valeuList, type) {
+
+    switch(type) {
+
+        case ('date'):
+            break
+
+        case ('expense'):
+            break         
+            
+    }
+}
+
 function sortExpenses(valueList) {
     
-    return valueList
+    var sortable = [];
+    for (var key in valueList) {
+        sortable.push([key, valueList[key]]);
+    }
+    sortable.sort(function(a, b) {return a[1] - b[1] })
+    sortable.reverse()
+    return sortable
 }
 
