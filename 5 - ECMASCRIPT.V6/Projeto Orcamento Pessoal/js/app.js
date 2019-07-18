@@ -108,11 +108,9 @@ class Statistics {
 
         yearList = sortExpenses(yearList)
 
-        for (let index = 0; index <= 10; index ++) {
-            console.log(yearList[index], index)
-        }
+        console.log(yearList)
 
-        printStatistics(yearList)
+        printStatistics(yearList, 'date')
     }
     
     expensesForMonth(expenses) {
@@ -130,17 +128,13 @@ class Statistics {
 
         monthList = sortExpenses(monthList)
 
-        for (let index = 0; index <= 12; index ++) {
-            console.log(monthList[index])
-        }
+        console.log(monthList)
 
-        printStatistics(monthList)
+        printStatistics(monthList, 'date')
     }
 }
 
 let statistics = new Statistics()
-statistics.expensesForYear(db.recoverAllRegistry())
-statistics.expensesForMonth(db.recoverAllRegistry())
 
 function showModal(result, title, body) {
 
@@ -207,7 +201,8 @@ function formatNumbers(type, number) {
             break
 
         case 'float':
-            return parseFloat(number).toFixed(2)
+            number = 'R$ ' + parseFloat(number).toFixed(2)
+            return number
             break
     }
 }
@@ -226,7 +221,7 @@ function showExpensesTable(expenses = Array(), filter = false) {
     expenses.forEach( function(expense){
      
         //Adjusting the type
-        let expenseTypes = ['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
+        let expenseTypes = translateInfo('type')//['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
         let expenseCode = parseInt(expense.type) - 1
                 
         //Adjusting the numbers to show
@@ -259,6 +254,17 @@ function showExpensesTable(expenses = Array(), filter = false) {
         }
         tableLine.insertCell(4).append(deleteButton)
     })
+}
+
+function translateInfo(info) {
+    switch(info) {
+        case ('type'):
+            return ['Alimentação', 'Educação', 'Lazer', 'Saúde', 'Transporte', 'Outros']
+
+        case ('month'):
+                return ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']       
+            
+    }
 }
 
 function loadExpenses() {
@@ -342,11 +348,13 @@ function showStatisticsTableHeader(statistic) {
         case ('expenseforyear'):
             title = ('Gasto por ano')
             hearder = ('<th>Ano</th><th>Valor</th>')
+            statistics.expensesForYear(db.recoverAllRegistry())
             break
 
             case ('expenseformonth'):
             title = ('Gasto por mês')
             hearder = ('<th>Mês</th><th>Valor</th>')
+            statistics.expensesForMonth(db.recoverAllRegistry())
             break
 
             case ('mostexpensive'):
@@ -364,11 +372,30 @@ function showStatisticsTableHeader(statistic) {
     tableHeader.innerHTML = hearder
 }
 
-function printStatistics(valeuList, type) {
+function printStatistics(valueList, type) {
+
+    let month = []
+    let resultList = document.getElementById('resultList')
+    resultList.innerHTML = ''
 
     switch(type) {
-
         case ('date'):
+            let date, value
+            for( let i = 0; i <= 4; i ++) {
+                date = parseInt(valueList[i][0])
+                value = formatNumbers('float',valueList[i][1])
+
+                if ( date < 13 ) {
+                    date = translateInfo('month')[ date -1 ]
+                }
+                //Creating the table row - tr
+                let resultLine = resultList.insertRow()
+
+                //Creating the table data - td
+                resultLine.insertCell(0).innerHTML = date
+                resultLine.insertCell(1).innerHTML = value
+            }
+    
             break
 
         case ('expense'):
