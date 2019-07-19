@@ -15,7 +15,6 @@ class Expense {
 
     validateData() {
         for(let i in this) {
-
             if(this[i] == '' || this[i] == undefined || this[i] == null ){
                 return false
             }
@@ -25,7 +24,11 @@ class Expense {
         let insertedDesc = document.getElementById('description').value
         let insertedValue = parseFloat(document.getElementById('value').value)
 
-        if (!( insertedDay >= 1 && insertedDay <= 31 ) || (insertedDesc == '') || ( insertedValue < 0 || isNaN(value)) ) {
+        console.log(insertedDay)
+        console.log(insertedDesc)
+        console.log(insertedValue)
+        
+        if (!( insertedDay >= 1 && insertedDay <= 31 ) || (insertedDesc == '') || ( insertedValue < 0 || isNaN(insertedValue)) ) {
             return false
         }
 
@@ -153,7 +156,7 @@ function showModal(result, title, body) {
     $('#showModal').modal('show')
 }
 
-function clearFormFields() {
+function clearFormFields( showExpenses = false) {
     year.value = ''
     month.value = ''
     day.value = ''
@@ -161,11 +164,11 @@ function clearFormFields() {
     description.value = ''
     value.value = ''
 
-    showExpensesTable()
+    if ( showExpenses) { showExpensesTable() }
 }
 
 function recordExpense() {
-    let year = document.getElementById('20')
+    let year = document.getElementById('year')
     let month = document.getElementById('month')
     let day = document.getElementById('day')
     let type = document.getElementById('type')
@@ -173,6 +176,7 @@ function recordExpense() {
     let value = document.getElementById('value')
 
     let expense = new Expense(year.value, month.value, day.value, type.value, description.value, value.value)
+    console.log(expense.validateData())
     let result, body, title
     if (expense.validateData()) {
         db.record(expense)
@@ -280,7 +284,7 @@ function loadExpenses() {
 }
 
 function searchExpense() {
-    let year = document.getElementById('20').value
+    let year = document.getElementById('year').value
     let month = document.getElementById('month').value
     let day = document.getElementById('day').value
     let type = document.getElementById('type').value
