@@ -1,3 +1,13 @@
+<?php
+
+  session_start();
+  
+  if(!$_SESSION['auth']) {
+    header('Location: index.php?login=error2');
+  } else {
+
+?>
+
 <html>
   <head>
     <meta charset="utf-8" />
@@ -76,3 +86,5 @@
     </div>
   </body>
 </html>
+
+<? } ?>

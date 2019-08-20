@@ -32,12 +32,29 @@
               Login
             </div>
             <div class="card-body">
-              <form>
+              <form action="http://localhost/Projeto_HelpDesk/validate_login.php" method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="E-mail">
+                  <input type="email" name="email" class="form-control" placeholder="E-mail">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Senha">
+                  <input type="password" name="password" class="form-control" placeholder="Senha">
+                  
+                  <? if(isset($_GET['login']) && $_GET['login'] == 'error') { ?>
+
+                    <div class="text-danger">
+                      Usuário ou senha inválidos.
+                    </div>
+                    
+                  <? } ?>
+                  
+                  <? if(isset($_GET['login']) && $_GET['login'] == 'error2') { ?>
+
+                    <div class="text-danger">
+                      Usuário não autorizado.
+                    </div>
+                    
+                  <? } ?>
+                
                 </div>
                 <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
               </form>
