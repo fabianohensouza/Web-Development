@@ -2,12 +2,8 @@
 
     //Recovering parameters sended by the logon page by its name in the array $_GET
     
-    /*print_r($_GET);
-    
-    echo '</br>';
-    echo $_GET['email'];
-    echo '</br>';
-    echo $_GET['password'];*/
+    /*$_GET['email'];
+      $_GET['password'];*/
 
     //Initializing the session resource - Always before  any output of data
     session_start();
@@ -38,13 +34,13 @@
     echo '<hr>'; 
     
     if($sucess) {
-        echo 'O usuário ' . $user['name'] . ' foi autenticado com sucesso.</br>';
-        echo 'ID: ' . $id . ' / Senha: ' . $password . ' / ' . $user['password'];
         $_SESSION['auth'] = true;
+        $_SESSION['x'] = '@';
+        $_SESSION['y'] = 'TTTTTT';
+        header('Location: home.php');
     } else {
         $_SESSION['auth'] = false;
         header('Location: index.php?login=error');
-        //echo 'Usuário ou senha inválidas.';
     }
 
     echo '<hr>'; 

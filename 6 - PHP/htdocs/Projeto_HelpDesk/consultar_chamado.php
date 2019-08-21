@@ -1,10 +1,24 @@
+<? require_once "scripts/access_validator.php" ?>
+
 <?php
 
-  session_start();
-  
-  if(!$_SESSION['auth']) {
-    header('Location: index.php?login=error2');
-  } else {
+  $service_orders = array();
+  //Open file and save its reference in a variable
+  $file = fopen('scripts/data_files/file.txt', 'r');
+
+  while(!feof($file)) {
+    //read lines of a file
+    $record = fgets($file);
+    $service_orders[] = $record;
+  }
+
+  //Close file
+  fclose($file);
+
+  //Erase the last line of the file
+  if ($service_orders[count($service_orders) - 1] == '') {
+    unset($service_orders[count($service_orders) - 1]);
+  }
 
 ?>
 
@@ -26,12 +40,7 @@
 
   <body>
 
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
-        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        App Help Desk
-      </a>
-    </nav>
+    <? include_once "elements/menu.php" ?>
 
     <div class="container">    
       <div class="row">
@@ -44,27 +53,26 @@
             
             <div class="card-body">
               
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
+              <?php
 
-                </div>
-              </div>
+                foreach($service_orders as $value) {
 
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
+                $returns_os = explode('#@', $value);
+              ?>
+                  <div class="card mb-3 bg-light">
+                    <div class="card-body">
+                      <h5 class="card-title"><?=$returns_os[0]?></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><?=$returns_os[1]?></h6>
+                      <p class="card-text"><?=$returns_os[2]?></p>
 
-                </div>
-              </div>
+                    </div>
+                  </div>
+              <? } ?>
+              
 
               <div class="row mt-5">
                 <div class="col-6">
-                  <button class="btn btn-lg btn-warning btn-block" type="submit">Voltar</button>
+                  <a class="btn btn-lg btn-warning btn-block" href="home.php">Voltar</a>
                 </div>
               </div>
             </div>
@@ -74,5 +82,3 @@
     </div>
   </body>
 </html>
-
-<? } ?>

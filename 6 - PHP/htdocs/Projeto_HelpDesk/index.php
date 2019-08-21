@@ -54,6 +54,14 @@
                     </div>
                     
                   <? } ?>
+                  
+                  <? if(isset($_GET['login']) && $_GET['login'] == 'logoff') { ?>
+
+                    <div class="text-danger">
+                      Você foi desconectado, faça login novamente.
+                    </div>
+                    
+                  <? } ?>
                 
                 </div>
                 <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
