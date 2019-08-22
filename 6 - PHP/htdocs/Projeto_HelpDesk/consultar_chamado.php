@@ -1,4 +1,4 @@
-<? require_once "scripts/access_validator.php" ?>
+<? require_once "scripts/access_validator.php"; print_r($_SESSION) ?>
 
 <?php
 
@@ -44,6 +44,7 @@
 
     <div class="container">    
       <div class="row">
+        <? include_once "elements/login_status.php" ?>
 
         <div class="card-consultar-chamado">
           <div class="card">
@@ -52,22 +53,34 @@
             </div>
             
             <div class="card-body">
-              
-              <?php
 
-                foreach($service_orders as $value) {
+              <?  foreach($service_orders as $value) { ?>
+                            
+                <?php
 
-                $returns_os = explode('#@', $value);
-              ?>
-                  <div class="card mb-3 bg-light">
-                    <div class="card-body">
-                      <h5 class="card-title"><?=$returns_os[0]?></h5>
-                      <h6 class="card-subtitle mb-2 text-muted"><?=$returns_os[1]?></h6>
-                      <p class="card-text"><?=$returns_os[2]?></p>
+                  $returns_os = explode('#@', $value);
+                  $os_status = (integer) $returns_os[6];
+                  if($os_status == 2) {
+                    echo 'Chamado ' . $returns_os[0] . ' fechado!</br>';
+                    continue;
+                  }
 
+                  if($_SESSION['profile'] == 2) {
+                    if($_SESSION['id'] != $returns_os[4]) {
+                      continue;
+                    }
+                  }
+                ?>
+                    <div class="card mb-3 bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title"><?=$returns_os[0] . ' - ' . $returns_os[1]?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?=$returns_os[2]?></h6>
+                        <p class="card-text"><?=$returns_os[3]?></p>
+                        <h6 class="card-text"><small><?='Técnico responsável: ' . $returns_os[5]?></small></h6>
+
+                      </div>
                     </div>
-                  </div>
-              <? } ?>
+              <?  } ?>
               
 
               <div class="row mt-5">

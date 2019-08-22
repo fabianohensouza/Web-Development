@@ -32,6 +32,7 @@
 
     <div class="container">    
       <div class="row">
+        <? include_once "elements/login_status.php" ?>
 
         <div class="card-abrir-chamado">
           <div class="card">

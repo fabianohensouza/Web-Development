@@ -1,4 +1,4 @@
-<? require_once "scripts/access_validator.php" ?>
+<? require_once "scripts/access_validator.php"; print_r($_SESSION)?>
 
 <html>
   <head>
@@ -22,6 +22,7 @@
 
     <div class="container">    
       <div class="row">
+        <? include_once "elements/login_status.php" ?>
 
         <div class="card-home">
           <div class="card">

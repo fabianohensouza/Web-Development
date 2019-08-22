@@ -1,2 +1,9 @@
-Computador com defeito no mouse#@Hardware#@O mouse não funciona
-Impressora falhando#@Impressora#@A impressora está falhando
+0001#@Teste#@Criação Usuário#@testets#@2#@Gerente#@1
+0002#@Computador com defeito no mouse#@Criação Usuário#@sgsgfg#@2#@Gerente#@1
+0003#@Monitor#@Criação Usuário#@dfgsdfg#@3#@Usuário#@1
+0004#@Internet parou#@Criação Usuário#@sdfgsfdg#@3#@Usuário#@1
+0005#@sadf#@Software#@adfasdfawerq#@4#@Usuário#@1
+0006#@Teste2#@Rede#@sfhgfj  gh er rert er#@4#@João#@2
+0007#@#@Criação Usuário#@sdfgserter rt etry #@1#@João#@2
+0008#@Computador com defeito no mouse#@Criação Usuário#@eth gdhr#@1#@Administrador#@1
+0009#@Teste#@Criação Usuário#@vvfdsgdfg#@1#@Administrador#@1
