@@ -1,4 +1,4 @@
-<? require_once "scripts/access_validator.php"; print_r($_SESSION)?>
+<? require_once "scripts/access_validator.php"?>
 
 <html>
   <head>

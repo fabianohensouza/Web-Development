@@ -50,7 +50,7 @@
 
     //$text = $title . '#@' . $category . '#@' . $description;
 
-    $file_path = 'data_files/file.txt';
+    $file_path = '/home/fabiano/Cursos/Curso de Desenvolvimento WEB/6 - PHP/scripts_projeto_helpDesk/data_files/file.txt';
 
     //Count numbers of line lines of a file
     $file_lines = count(file($file_path));

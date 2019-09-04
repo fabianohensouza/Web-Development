@@ -1,10 +1,10 @@
-<? require_once "scripts/access_validator.php"; print_r($_SESSION) ?>
+<? require_once "scripts/access_validator.php"?>
 
 <?php
 
   $service_orders = array();
   //Open file and save its reference in a variable
-  $file = fopen('scripts/data_files/file.txt', 'r');
+  $file = fopen('/home/fabiano/Cursos/Curso de Desenvolvimento WEB/6 - PHP/scripts_projeto_helpDesk/data_files/file.txt', 'r');
 
   while(!feof($file)) {
     //read lines of a file
@@ -45,6 +45,9 @@
     <div class="container">    
       <div class="row">
         <? include_once "elements/login_status.php" ?>
+      </div>
+
+      <div class="row">
 
         <div class="card-consultar-chamado">
           <div class="card">
