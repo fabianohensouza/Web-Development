@@ -8,6 +8,13 @@
         protected $surname = 'Raimundo';
         public $mood = 'Feliz';
 
+        public function __construct() {
+
+            echo '<hr><pre>';
+            print_r(get_class_methods($this));
+            echo '</pre><hr>';
+        }
+
         public function __get($attr) {
             return $this->$attr;
         }
@@ -34,9 +41,33 @@
     class Son extends Father {  
 
         //Attributes
-        private $age;
-        
+        private $age = 0;
+
+        public function __construct() {
+
+            echo '<hr><pre>';
+            print_r(get_class_methods($this));
+            echo '</pre><hr>';
         }
+        
+        private function execCraze() {
+            echo 'Executando Mania!</br>';
+        }
+
+        public function execPrivateLocalScope() {
+            $this->$execCraze();
+        }
+        
+
+        public function __getAttr($attr) {
+            return $this->$attr;
+        }
+
+        public function __setAttr($attr, $value) {
+            $this->$attr = $value;
+        }
+        
+    }
 
     //Instancing a object
     $father = new Father();
@@ -57,35 +88,46 @@
 
     //Accessing a private and protected attribute - Rigth Way
     echo $son->__get('name') . '</br>';
-    echo $father->__get('name') . '</br>';
     echo $son->__get('surname') . '</br>';
-    echo $father->__get('surname') . '</br><hr>';
+    echo $son->__get('mood') . '</br>';
+    echo $father->__get('name') . '</br>';
+    echo $father->__get('surname') . '</br>';
+    echo $father->__get('mood') . '</br><hr>';
 
     //Changing a private and protected attribute - Rigth Way
     $father-> __set('surname','Henrique');
-    $son->__set('name', 'Antonio');
-    $father->__set('name', 'Carlos');
-    $son->__set('surname', 'Maria');
-    $son->__set('age', '19');
+    $father->__set('name', 'Hermano');
+    $son->__setAttr('name', 'Carlindo');
+    $son->__setAttr('surname', 'Carlos');
+    $son->__setAttr('age', '19');
 
-    /*echo $son->__get('name') . ' ';
-    echo $son->__get('surname') . ' - ';
-    echo $son->__get('age') . ' anos!</br>';
+    echo '<hr><pre>';
+    print_r($son);
+    echo '</pre><hr>';
+    echo '<hr><pre>';
+    print_r(get_class_methods($father));
+    print_r(get_class_methods($son));
+    echo '</pre><hr>';
+
+    echo $son->__getAttr('name') . ' ';
+    echo $son->__getAttr('surname') . ' - ';
+    echo $son->__getAttr('age') . ' anos!</br>';
     echo $father->__get('name') . ' ';
-    echo $father->__get('surname') . '</br><hr>';*/
+    echo $father->__get('surname') . '</br><hr>';
     
-    echo $son->$name;
+    /*echo $son->$name;
     echo ' ';
     echo $son->$surname;
     echo '</br>';
     echo $father->$name;
     echo ' ';
     echo $father->$surname;
-    echo '</br><hr>';
+    echo '</br><hr>';*/
 
     //Call function trough a interface
-    $father->execAction('execCraze');
-    $father->execAction('reply');
+    $son->execAction('execCraze');
+    $son->execAction('reply');
+    $son->execPrivateLocalScope();
     echo '<hr>';
     $father->execAction('execCraze');
     $father->execAction('reply');
