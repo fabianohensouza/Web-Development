@@ -11,11 +11,45 @@
         <script>
         
             function requestPage(url) {
-                let ajax = new XMLHttpRequest();
-                ajax.open('GET', url);
-                ajax.send();
 
-                console.log(ajax.response);
+				document.getElementById('content').innerHTML = ''
+
+				//including a loading gif in the page
+				if (!document.getElementById('loading')) {
+					let imgLoading = document.createElement('img')
+					imgLoading.id = 'loading'
+					imgLoading.src = 'loading.gif'
+					imgLoading.className = 'rounded mx-auto d-block'
+
+					document.getElementById('content').appendChild(imgLoading);
+				}
+
+                let ajax = new XMLHttpRequest();
+
+				//state 0 - request noi initialized
+				console.log(ajax.readyState);
+                
+				ajax.open('GET', url);
+				//state 1 - Server connection established
+				console.log(ajax.readyState);
+                
+				//recover the connection state from the server
+				//The attribut onreadystatechange must be transformed in a function
+				ajax.onreadystatechange = () => { 
+					if(ajax.readyState == 4 && ajax.status == 200) {
+						
+						document.getElementById('content').innerHTML = ajax.responseText
+					}
+					if(ajax.readyState == 4 && ajax.status == 404) {
+						
+						document.getElementById('content').innerHTML = 'Requisição finalizada sem sucesso, retorno 404'
+					}
+				}	
+
+				ajax.send();	
+				
+                let response = ajax.response;
+				console.log(typeof response);
             }
 
         </script>
@@ -39,9 +73,9 @@
 	    	<div class="row mb-2">
 	    		<div class="col-md-4 center"></div>
 	    		<div class="col-md-4 center">
-	    			<a href="#" class="btn btn-primary" onclick="requestPage('pagina_1_conteudo.html')">Página 1</a>
-	    			<a href="#" class="btn btn-primary" onclick="requestPage('pagina_2_conteudo.html')">Página 2</a>
-	    			<a href="#" class="btn btn-primary" onclick="requestPage('pagina_3_conteudo.html')">Página 3</a>
+	    			<a href="#" class="btn btn-primary" onclick="requestPage('pagina_1_conteudo.php')">Página 1</a>
+	    			<a href="#" class="btn btn-primary" onclick="requestPage('pagina_2_conteudo.php')">Página 2</a>
+	    			<a href="#" class="btn btn-primary" onclick="requestPage('pagina_3_conteudo.php')">Página 3</a>
 	    		</div>
 	    		<div class="col-md-4 center"></div>
 	    	</div>
@@ -49,7 +83,7 @@
 	    	<div class="row">
 		    	<div class="col-md-1"></div>
 
-		    	<div class="col-md-10">
+		    	<div class="col-md-10" id='content'>
 		    		
 		    	</div>
 		    		
