@@ -7,7 +7,7 @@
 		
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
+		<script src="xmltojson.js"></script>
         <script>
         
             function getMovies() {
@@ -17,7 +17,15 @@
                 xmlHttp.onreadystatechange = () => {
                     if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 						let xmlMovies = xmlHttp.responseText
-                        console.log(xmlMovies)
+						let parser = new DOMParser()
+
+						//Converting the XML to a DOM format
+						domMovies = parser.parseFromString(xmlMovies, 'text/xml')
+						//Converting the XML-DOM to JSON
+						jsonMovies = xmlToJson(domMovies)
+
+						console.log(domMovies)
+						console.log(jsonMovies)
 					}
 					if(xmlHttp.readyState == 4 && xmlHttp.status == 404) {
 						//let xmlMovies = 'Requisição finalizada sem sucesso, retorno 404'
