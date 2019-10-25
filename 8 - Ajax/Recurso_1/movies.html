@@ -24,8 +24,66 @@
 						//Converting the XML-DOM to JSON
 						jsonMovies = xmlToJson(domMovies)
 
-						console.log(domMovies)
-						console.log(jsonMovies)
+						for(let i in jsonMovies['filmes']['filme']) {
+							console.log(jsonMovies['filmes']['filme'][i])
+							let item = jsonMovies['filmes']['filme'][i]
+
+							//Creating the new elements
+							let divRow = document.createElement('div')
+							divRow.className = 'row'
+
+							let divCol = document.createElement('div')
+							divCol.className = 'col'
+
+							let p1 = document.createElement('p')
+							p1.innerHTML = '<strong>Titulo: </strong>' + item['titulo']['#text']
+
+							let p2 = document.createElement('p')
+							p2.innerHTML = '<strong>Resumo: </strong>' + item['resumo']['#text']
+
+							let genero = ''							
+							for(let g in item['genero']) {
+								genero += item['genero'][g]['#text']
+
+								//Insert ,
+								if(g < (item['genero'].length) - 1) {
+									genero += ', '
+								}
+							}
+
+							let p3 = document.createElement('p')
+							p3.innerHTML = '<strong>Genero: </strong>' + genero
+
+							let elenco = ''							
+							for(let e in item['elenco']['ator']) {
+								
+								//Insert ,
+								if(elenco) elenco += ', '
+								
+								elenco += item['elenco']['ator'][e]['#text']
+							}
+
+							let p4 = document.createElement('p')
+							p4.innerHTML = '<strong>Elenco: </strong>' + elenco
+
+							let p5 = document.createElement('p')
+							p5.innerHTML = '<strong>Lançamento: </strong>' + item.dataLancamento['#text'] + ' (' + item.dataLancamento['@attributes']['pais'] + ')'
+
+							let hr = document.createElement('hr')
+
+							//Identing the new elements
+
+							divRow.appendChild(divCol)
+							divCol.appendChild(p1)
+							divCol.appendChild(p2)
+							divCol.appendChild(p3)
+							divCol.appendChild(p4)
+							divCol.appendChild(p5)
+							divCol.appendChild(hr)
+
+							//Rendering the new elements in the page
+							document.getElementById('list').appendChild(divRow)
+						}
 					}
 					if(xmlHttp.readyState == 4 && xmlHttp.status == 404) {
 						//let xmlMovies = 'Requisição finalizada sem sucesso, retorno 404'
@@ -51,15 +109,15 @@
 	    </nav>
 
 
-	    <div class="container">
+	    <div class="container" id="list">
 
 	    	<div class="row mb-2">
 	    		<div class="col-md-4 center"></div>
 	    		<div class="col-md-4 center">
 	    			<button type="button" class="btn btn-success" onclick="getMovies()">Listar Filmes</button>
 	    		</div>
-	    		<div class="col-md-4 center"></div>
 	    	</div>
+			
 
 		</div>	
 	</body>
