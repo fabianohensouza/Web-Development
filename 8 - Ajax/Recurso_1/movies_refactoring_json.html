@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Catálogo de Filmes</title>
+		
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="xmltojson.js"></script>
+        <script>
+        
+            function getMovies() {
+                let jsonHttp = new XMLHttpRequest();
+                jsonHttp.open('GET', 'http://localhost/8%20-%20Ajax/Recurso_1/movies.json'); 
+
+                jsonHttp.onreadystatechange = () => {
+                    if(jsonHttp.readyState == 4 && jsonHttp.status == 200) {
+						let jsonMovies = jsonHttp.responseText
+                      
+                        //transforming the JSON into a element tree
+                        let objJSONMovies = JSON.parse(jsonMovies)
+                        console.log(objJSONMovies)
+                        console.log(jsonMovies)
+
+						for(let i in objJSONMovies['filmes']) {
+							let item = objJSONMovies.filmes[i]
+
+							//Creating the new elements
+							let divRow = document.createElement('div')
+							divRow.className = 'row'
+
+							let divCol = document.createElement('div')
+							divCol.className = 'col'
+
+							let p1 = document.createElement('p')
+							p1.innerHTML = '<strong>Titulo: </strong>' + item['titulo']
+
+							let p2 = document.createElement('p')
+							p2.innerHTML = '<strong>Resumo: </strong>' + item['resumo']
+
+							let genero = ''							
+							for(let g in item['generos']) {
+								genero += item['generos'][g]['genero']
+
+								//Insert ,
+								if(g < (item['generos'].length) - 1) {
+									genero += ', '
+								}
+							}
+
+							let p3 = document.createElement('p')
+							p3.innerHTML = '<strong>Genero: </strong>' + genero
+
+							let elenco = ''							
+							for(let e in item['elenco']) {
+								
+								//Insert ,
+								if(elenco) elenco += ', '
+								
+								elenco += item['elenco'][e]['ator']
+							}
+
+							let p4 = document.createElement('p')
+							p4.innerHTML = '<strong>Elenco: </strong>' + elenco
+
+							let p5 = document.createElement('p')
+							p5.innerHTML = '<strong>Lançamento: </strong>' + item.dataLancamento.data + ' (' + item.dataLancamento.pais + ')'
+
+							let hr = document.createElement('hr')
+
+							//Identing the new elements
+
+							divRow.appendChild(divCol)
+							divCol.appendChild(p1)
+							divCol.appendChild(p2)
+							divCol.appendChild(p3)
+							divCol.appendChild(p4)
+							divCol.appendChild(p5)
+							divCol.appendChild(hr)
+
+							//Rendering the new elements in the page
+                            document.getElementById('list').appendChild(divRow)
+                            
+						}
+					}
+					if(jsonHttp.readyState == 4 && jsonHttp.status == 404) {
+						//let xmlMovies = 'Requisição finalizada sem sucesso, retorno 404'
+					}
+                }
+
+                jsonHttp.send();
+            }
+
+        </script>
+
+	</head>
+
+	<body>
+
+		<!-- Static navbar -->
+	    <nav class="navbar navbar-light bg-light mb-4">
+	      <div class="container">
+	        <div class="navbar-brand mb-0 h1">
+	        	<h3>Catálogo de Filmes - Consulta</h3>
+	        </div>
+	      </div>
+	    </nav>
+
+
+	    <div class="container" id="list">
+
+	    	<div class="row mb-2">
+	    		<div class="col-md-4 center"></div>
+	    		<div class="col-md-4 center">
+	    			<button type="button" class="btn btn-success" onclick="getMovies()">Listar Filmes</button>
+	    		</div>
+	    	</div>
+			
+
+		</div>	
+	</body>
+</html>
