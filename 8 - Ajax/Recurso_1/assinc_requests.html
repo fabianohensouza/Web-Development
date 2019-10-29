@@ -12,9 +12,9 @@
         
             function requestPage(url) {
 
+				//including a loading gif in the page
 				document.getElementById('content').innerHTML = ''
 
-				//including a loading gif in the page
 				if (!document.getElementById('loading')) {
 					let imgLoading = document.createElement('img')
 					imgLoading.id = 'loading'
@@ -45,6 +45,8 @@
 						document.getElementById('content').innerHTML = 'Requisição finalizada sem sucesso, retorno 404'
 					}
 				}	
+
+				document.getElementById('loading').remove()
 
 				ajax.send();	
 				
