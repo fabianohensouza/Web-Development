@@ -1,6 +1,6 @@
 <?php 
 
-	$action = 'recover';
+	$action = 'pendingTask';
 	require 'task_controller.php';
 
 ?>
@@ -21,7 +21,7 @@
 							
 			//Creat a form to edit the information
 			let form = document.createElement('form');
-			form.action = 'task_controller.php?action=update';
+			form.action = 'task_controller.php?pag=pending&action=update';
 			form.method = 'post';
 			form.className = 'row';
 
@@ -58,20 +58,13 @@
 		function remove(id) {
 							
 			//Removing the task by ID
-			location.href = 'todas_tarefas.php?action=remove&id='+id
+			location.href = 'tarefas_pendentes.php?pag=pending&action=remove&id='+id
 		}
 		
 		function completed(id) {
 							
 			//Completing the task by ID
-			location.href = 'todas_tarefas.php?action=completed&id='+id
-			
-		}
-		
-		function returns(id) {
-							
-			//Completing the task by ID
-			location.href = 'todas_tarefas.php?action=returns&id='+id
+			location.href = 'tarefas_pendentes.php?pag=pending&action=completed&id='+id
 			
 		}
 		
@@ -89,31 +82,13 @@
 			</div>
 		</nav>
 
-		<? if(isset($_GET['update']) && $_GET['update'] == 1) { ?>
-				<div class="bg-success pt-2 text-white d-flex justify-content-center">
-					<h5>Tafera atualizada com sucesso.</h5>
-				</div>
-		<? } ?>
-
-		<? if(isset($_GET['update']) && $_GET['update'] == 2) { ?>
-				<div class="bg-danger pt-2 text-white d-flex justify-content-center">
-					<h5>Tafera removida com sucesso.</h5>
-				</div>
-		<? } ?>
-
-		<? if(isset($_GET['update']) && $_GET['update'] == 3) { ?>
-				<div class="bg-warning pt-2 text-white d-flex justify-content-center">
-					<h5>Tafera marcada como realizada.</h5>
-				</div>
-		<? } ?>
-
 		<div class="container app">
 			<div class="row">
 				<div class="col-sm-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="tarefas_pendentes.php">Tarefas pendentes</a></li>
+						<li class="list-group-item active"><a href="#">Tarefas pendentes</a></li>
 						<li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
-						<li class="list-group-item active"><a href="#">Todas tarefas</a></li>
+						<li class="list-group-item"><a href="todas_tarefas.php">Todas tarefas</a></li>
 					</ul>
 				</div>
 
@@ -121,22 +96,18 @@
 					<div class="container pagina">
 						<div class="row">
 							<div class="col">
-								<h4>Todas tarefas</h4>
+								<h4>Tarefas Pendentes</h4>
 								<hr />
 
-									<? foreach($tasks as $index => $task) { ?>
+                                <? foreach($tasks as $index => $task) { ?>
 										<div class="row mb-3 d-flex align-items-center tarefa" id="squaretask_<?= $task->id;?>">
 											<div class="col-sm-9" id="task_<?= $task->id;?>">
-												<?= $task->task;?> (<?= $task->status?>)
+												<?= $task->task;?>
 											</div>
 											<div class="col-sm-3 mt-2 d-flex justify-content-between">
 												<i class="fas fa-trash-alt fa-lg text-danger" onclick="remove(<?= $task->id;?>)"></i>
-												<? if($task->status == 'Pendente') { ?>
-													<i class="fas fa-edit fa-lg text-info" onclick="edit(<?= $task->id;?>, '<?= $task->task;?>')"></i>
-													<i class="fas fa-check-square fa-lg text-success" onclick="completed(<?= $task->id;?>)"></i>
-												<? } else { ?>
-													<i class="fas fas fa-undo-alt fa-lg text-warning" onclick="returns(<?= $task->id;?>)"></i>
-												<? } ?>
+												<i class="fas fa-edit fa-lg text-info" onclick="edit(<?= $task->id;?>, '<?= $task->task;?>')"></i>
+												<i class="fas fa-check-square fa-lg text-success" onclick="completed(<?= $task->id;?>)"></i>
 											</div>
 											</div>
 									<? } ?>

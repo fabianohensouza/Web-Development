@@ -3,7 +3,7 @@
 class Connection {
 
     private $host = 'localhost';
-    private $dbname = 'php_com_pdo';
+    private $dbname = 'php_with_pdo';
     private $user = 'root';
     private $pass = '';
 
@@ -18,7 +18,7 @@ class Connection {
 
             return $connection;
 
-        } catch {
+        } catch (PDOexception $e) {
             echo '<p>'.$e->getMessage().'</p>';
         }
     }

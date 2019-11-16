@@ -19,11 +19,17 @@
 			</div>
 		</nav>
 
+		<? if(isset($_GET['inclusao']) && $_GET['inclusao'] == 1) { ?>
+				<div class="bg-success pt-2 text-white d-flex justify-content-center">
+					<h5>Tafera inserida com sucesso.</h5>
+				</div>
+		<? } ?>
+
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
+						<li class="list-group-item"><a href="tarefas_pendentes.php">Tarefas pendentes</a></li>
 						<li class="list-group-item active"><a href="#">Nova tarefa</a></li>
 						<li class="list-group-item"><a href="todas_tarefas.php">Todas tarefas</a></li>
 					</ul>
@@ -36,10 +42,10 @@
 								<h4>Nova tarefa</h4>
 								<hr />
 
-								<form>
+								<form method="post" action="task_controller.php?action=insert">
 									<div class="form-group">
 										<label>Descrição da tarefa:</label>
-										<input type="text" class="form-control" placeholder="Exemplo: Lavar o carro">
+										<input type="text" class="form-control" placeholder="Exemplo: Lavar o carro" name="task">
 									</div>
 
 									<button class="btn btn-success">Cadastrar</button>
