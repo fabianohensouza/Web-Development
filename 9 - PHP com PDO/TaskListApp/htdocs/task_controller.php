@@ -1,8 +1,8 @@
 <?php
 
-    require "../Back_end/task.model.php";
-    require "../Back_end/task.service.php";
-    require "../Back_end/db_connection.php";
+    require "task.model.php";
+    require "task.service.php";
+    require "db_connection.php";
 
     $action = isset($_GET['action']) ? $_GET['action'] : $action;
 
@@ -18,7 +18,7 @@
         $taskService = new TaskService($connection, $task);
         $taskService->insert();
 
-        header('Location: nova_tarefa.php?inclusao=1');
+        header('Location: index.php?inclusao=1');
     } else if($action == 'recover') {
         
         $task = new Task();

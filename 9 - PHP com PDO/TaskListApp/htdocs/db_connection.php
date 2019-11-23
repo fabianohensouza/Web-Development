@@ -2,10 +2,10 @@
 
 class Connection {
 
-    private $host = 'localhost';
-    private $dbname = 'php_with_pdo';
-    private $user = 'root';
-    private $pass = '';
+    private $host = 'sql209.epizy.com';
+    private $dbname = 'epiz_24808359_taskapp';
+    private $user = '	epiz_24808359';
+    private $pass = 'cTOzVm2zxWGDL';
 
     public function connect() { //create
         try {
