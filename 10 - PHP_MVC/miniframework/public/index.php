@@ -6,6 +6,9 @@
 	echo "It's Working!!";
 	echo '<pre>';
 	print_r($route->getUrl());
+	echo '</pre><hr>';
+	echo '<pre>';
+	print_r($route->getRoutes());
 	echo '</pre>';
 
 ?>
