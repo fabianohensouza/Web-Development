@@ -5,6 +5,7 @@
 	class Route {
 
 		private $routes;
+		private $valida = False;
 
 		public function __construct() {
 			
@@ -33,7 +34,7 @@
 			$routes['sobre_nos'] = array(
 				'route' => '/sobre_nos',
 				'controller' => 'indexController',
-				'action' => 'sobre_nos'
+				'action' => 'sobreNos'
 			);
 
 			$this->setRoutes($routes);
@@ -46,7 +47,25 @@
 
 		public function run($url) {
 
-			echo "******".$url."******<br>";
+			foreach ($this->getRoutes() as $key => $route) {
+
+				if($url ==$route['route']) {
+
+					$class = "App\\Controllers\\".ucfirst($route['controller']);
+
+					$controller = new $class;
+					print_r($controller);
+					$action = $route['action'];
+					echo '<hr>'.$action.'//'.$url.'<hr>';
+					$controller->$action();
+
+					$this->valida = True;
+				}
+			}
+
+			if(!$this->valida) {
+				echo '<hr>A URL '.$url.' Inválida!';
+			}
 		}
 	}
 
