@@ -40,9 +40,8 @@
 					$class = "App\\Controllers\\".ucfirst($route['controller']);
 
 					$controller = new $class;
-					print_r($controller);
 					$action = $route['action'];
-					echo '<hr>'.$action.'//'.$url.'<hr>';
+					echo '<hr>'.$action.' -- '.$url.'<hr>';
 					$controller->$action();
 
 					$this->valida = True;
