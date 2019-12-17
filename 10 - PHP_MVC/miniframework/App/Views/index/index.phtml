@@ -5,8 +5,9 @@
 
 	//echo 'Chegamos no IndexController e disparamos a action index';
 
-foreach ($this->view->dados as $index => $value) {
-	echo $value.'<br>';
+	foreach ($this->view->dados as $index => $produto) {
+	
+		echo $produto['id']. '-' .$produto['descricao']. '-' .$produto['preco'].'<br>';
 }
 
 ?>
