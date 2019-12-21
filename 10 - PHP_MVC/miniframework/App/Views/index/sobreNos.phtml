@@ -3,9 +3,17 @@
 
 <?php
 
+	echo '<pre>';
+	print_r($this->view->dados);
+	echo '</pre>';
+
 	//echo 'Chegamos no IndexController e disparamos a action sobreNos';
-	foreach ($this->view->dados as $index => $value) {
-		echo $value.'<br>';
+	foreach ($this->view->dados as $index => $info) {
+		
+		echo $info['titulo'];
+		echo '<br>';
+		echo $info['descricao'];
+		echo '<hr>';
 	}
 
 ?>
