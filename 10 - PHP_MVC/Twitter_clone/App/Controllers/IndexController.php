@@ -18,6 +18,23 @@ class IndexController extends Action {
 		$this->render('inscreverse');
 	}
 
+	public function registrar() {
+
+		echo '<pre>';
+		print_r($_POST);
+		echo '</pre>';
+
+		$usuario = Container::getModel('Usuario');
+
+		$usuario->__set('nome', $_POST['nome']);
+		$usuario->__set('email', $_POST['email']);
+		$usuario->__set('senha', $_POST['senha']);
+
+		echo '<pre>';
+		print_r($usuario);
+		echo '</pre>';
+	}
+
 }
 
 
