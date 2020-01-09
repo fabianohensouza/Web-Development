@@ -15,6 +15,15 @@ class IndexController extends Action {
 
 	public function inscreverse() {
 
+		$this->view->usuario = array(
+			'nome' => '',
+			'email' => '',
+			'senha' => ''
+		);
+
+		$this->view->usuarioCadastrado = false;
+		$this->view->erroCadastro = false;
+
 		$this->render('inscreverse');
 	}
 
@@ -28,13 +37,35 @@ class IndexController extends Action {
 
 		if($usuario->validarCadastro()) {
 
-			if( count($usuario->getUsuarioPorEmail()) == 0 ) {
+			if(count($usuario->getUsuarioPorEmail()) == 0) {
 				
 				$usuario->salvar();
+
+				$this->render('cadastro');
+			} else {
+
+				$this->view->usuario = array(
+					'nome' => $_POST['nome'],
+					'email' => $_POST['email'],
+					'senha' => $_POST['senha']
+				);
+
+				$this->view->usuarioCadastrado = true;
+				
+				$this->render('inscreverse');
 			}
 
 		} else {
-			//...
+
+			$this->view->usuario = array(
+				'nome' => $_POST['nome'],
+				'email' => $_POST['email'],
+				'senha' => $_POST['senha']
+			);
+
+			$this->view->erroCadastro = true;
+			
+			$this->render('inscreverse');
 		}
 
 	}

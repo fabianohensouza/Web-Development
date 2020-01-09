@@ -40,16 +40,15 @@ class Usuario extends Model {
 			$valido = false;
 		}
 
-		if(strlen($this->__get('email')) < 3 or strpos($this->__get('email'), '@') === false) {
-		//if(strlen($this->__get('email')) < 3) {
+		if(strpos($this->__get('email'), '@') == False ) {
+			$valido = false;
+		}
+
+		if(strlen($this->__get('email')) < 3) {
 			$valido = false;
 		}
 
 		if(strlen($this->__get('senha')) < 3 ) {
-			$valido = false;
-		}
-
-		if( count($this->getUsuarioPorEmail()) != 0 ) {
 			$valido = false;
 		}
 
@@ -58,8 +57,8 @@ class Usuario extends Model {
 
 	//Recuperar usuário por e-mail
 	public function getUsuarioPorEmail() {
-		$query = "select nome, email from usuario where email = :email";
-		$stmt = $stmt = $this->db->prepare($query);
+		$query = "select nome, email from usuarios where email = :email";
+		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(':email', $this->__get('email'));
 		$stmt->execute();
 
