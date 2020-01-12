@@ -42,6 +42,7 @@ class IndexController extends Action {
 				$usuario->salvar();
 
 				$this->render('cadastro');
+				
 			} else {
 
 				$this->view->usuario = array(
