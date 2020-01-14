@@ -10,6 +10,7 @@ class IndexController extends Action {
 
 	public function index() {
 
+		$this->view->login = isset($_GET['login']) ? $_GET['login'] : '';
 		$this->render('index');
 	}
 
@@ -33,7 +34,7 @@ class IndexController extends Action {
 
 		$usuario->__set('nome', $_POST['nome']);
 		$usuario->__set('email', $_POST['email']);
-		$usuario->__set('senha', $_POST['senha']);
+		$usuario->__set('senha', md5($_POST['senha']));
 
 		if($usuario->validarCadastro()) {
 
