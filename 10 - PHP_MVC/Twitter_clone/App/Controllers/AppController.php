@@ -21,6 +21,26 @@ class AppController extends Action {
 		}
 	}
 
+	public function tweet() {
+
+		session_start();
+
+		if($_SESSION['id'] != '' && $_SESSION['nome'] != '') {
+
+			$tweet = Container::getModel('Tweet');
+
+			$tweet->__set('tweet', $_POST['tweet']);
+			$tweet->__set('id_usuarios', $_SESSION['id']);
+
+			$tweet->salvar();
+
+		} else {
+			header('Location: /?login=erro');
+		}
+
+		
+	}
+
 }
 
 
