@@ -32,10 +32,19 @@ class Tweet extends Model {
 	}
 
 	//Recuperar usuário por e-mail
-	public function getUsuarioPorEmail() {
-		$query = "select nome, email from usuarios where email = :email";
+	public function getAll() {
+		$query = "select 
+					t.id, t.id_usuarios, t.tweet, u.nome, DATE_FORMAT(t.data, '%d/%m/%Y %H:%i') as data
+				  from 
+					tweets as t
+					left join usuarios as u on (t.id_usuarios = u.id)
+				  where 
+					t.id_usuarios = :id_usuarios
+				  order by 
+				    t.data desc";
+				    					
 		$stmt = $this->db->prepare($query);
-		$stmt->bindValue(':email', $this->__get('email'));
+		$stmt->bindValue(':id_usuarios', $this->__get('id_usuarios'));
 		$stmt->execute();
 
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
