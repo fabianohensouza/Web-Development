@@ -51,8 +51,6 @@ class AppController extends Action {
 		$this->validaAutenticacao();
 
 		$pesquisar = isset($_GET['pesquisar']) ? $_GET['pesquisar'] : '';
-		echo '<br><br><br><br>';
-		echo 'Pesquisando por '.$pesquisar;
 
 		$usuarios = array();
 
@@ -60,18 +58,35 @@ class AppController extends Action {
 
 			$usuario = Container::getModel('Usuario');
 			$usuario->__set('nome', $pesquisar);
+			$usuario->__set('id', $_SESSION['id']);
 			$usuarios = $usuario->getAll();
-
-
-			echo'<pre>';
-			print_r($usuarios);
-			echo'</pre>';
 		}
 
 		$this->view->usuarios = $usuarios;
 
 		$this->render('quemSeguir');
 
+	}
+
+	public function acao() {
+
+		$this->validaAutenticacao();
+
+		$acao = isset($_GET['acao']) ? $_GET['acao']  : '';
+		$id_usuario_seguindo = isset($_GET['id_usuario']) ? $_GET['id_usuario']  : ''; 
+
+		$usuario = Container::getModel('Usuario');
+		$usuario->__set('id', $_SESSION['id']);
+
+		if( $acao == 'seguir' ) {
+
+			$usuarios = $usuario->seguirUsuario($id_usuario_seguindo);
+
+		} else if ( $acao == 'deixar_de_seguir' ) {
+
+			$usuarios = $usuario->deixarSeguirUsuario($id_usuario_seguindo);
+			
+		}
 	}
 
 }
