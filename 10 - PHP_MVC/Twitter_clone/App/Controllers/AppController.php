@@ -51,6 +51,7 @@ class AppController extends Action {
 		$this->validaAutenticacao();
 
 		$pesquisar = isset($_GET['pesquisar']) ? $_GET['pesquisar'] : '';
+		$_SESSION['pesquisar'] = $pesquisar;
 
 		$usuarios = array();
 
@@ -73,20 +74,25 @@ class AppController extends Action {
 		$this->validaAutenticacao();
 
 		$acao = isset($_GET['acao']) ? $_GET['acao']  : '';
-		$id_usuario_seguindo = isset($_GET['id_usuario']) ? $_GET['id_usuario']  : ''; 
+		$id_usuario_seguindo = isset($_GET['id_usuario']) ? $_GET['id_usuario']  : '';
+		$nome = isset($_SESSION['pesquisar']) ? $_SESSION['pesquisar']  : '';
 
 		$usuario = Container::getModel('Usuario');
 		$usuario->__set('id', $_SESSION['id']);
 
 		if( $acao == 'seguir' ) {
 
-			$usuarios = $usuario->seguirUsuario($id_usuario_seguindo);
+			$usuario->seguirUsuario($id_usuario_seguindo);
 
 		} else if ( $acao == 'deixar_de_seguir' ) {
 
-			$usuarios = $usuario->deixarSeguirUsuario($id_usuario_seguindo);
+			$usuario->deixarSeguirUsuario($id_usuario_seguindo);
 			
 		}
+
+		//header('Location: /quem_seguir');
+		header('Location: /quem_seguir?pesquisar='.$nome);
+		
 	}
 
 }

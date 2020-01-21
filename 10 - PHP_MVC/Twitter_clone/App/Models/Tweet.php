@@ -34,12 +34,17 @@ class Tweet extends Model {
 	//Recuperar usuário por e-mail
 	public function getAll() {
 		$query = "select 
-					t.id, t.id_usuarios, t.tweet, u.nome, DATE_FORMAT(t.data, '%d/%m/%Y %H:%i') as data
+					t.id, 
+					t.id_usuarios, 
+					t.tweet, 
+					u.nome, 
+					DATE_FORMAT(t.data, '%d/%m/%Y %H:%i') as data
 				  from 
 					tweets as t
 					left join usuarios as u on (t.id_usuarios = u.id)
 				  where 
 					t.id_usuarios = :id_usuarios
+					or t.id_usuarios in (SELECT `id_usuario_seguindo` FROM `usuarios_seguidores` WHERE id_usuario = :id_usuarios)
 				  order by 
 				    t.data desc";
 				    					

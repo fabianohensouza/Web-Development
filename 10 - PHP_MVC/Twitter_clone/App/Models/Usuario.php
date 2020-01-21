@@ -88,11 +88,19 @@ class Usuario extends Model {
 	//Recuperar todos usuários
 	public function getAll() {
 		$query = "select 
-					id, nome, email 
+					u.id, u.nome, u.email,
+					(
+						select
+							count(*)
+						from 
+							usuarios_seguidores as us
+						where
+							us.id_usuario = :id_usuario and us.id_usuario_seguindo = u.id
+					) as seguindo_sn 
 				  from 
-				  	usuarios 
+				  	usuarios as u
 				  where 
-				  	nome like :nome and id != :id_usuario
+				  	u.nome like :nome and u.id != :id_usuario
 				  ";
 
 		$stmt = $this->db->prepare($query);
@@ -105,30 +113,46 @@ class Usuario extends Model {
 	}
 
 	//Seguir usuários
-	public function seguirUsuario() {
+	public function seguirUsuario($id_usuario_seguindo) {
+
 		$query = "insert into usuarios_seguidores(id_usuario, id_usuario_seguindo)
 				  values(:id_usuario, :id_usuario_seguindo)";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(':id_usuario', $this->__get('id'));
-		$stmt->bindValue(':id_usuario', $this->__get('id'));
+		$stmt->bindValue(':id_usuario_seguindo', $id_usuario_seguindo);
 		$stmt->execute();
 
-		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		return true;
 
 	}
 
 	//Deixar de seguir usuários
-	public function deixarSeguirUsuario() {
-		$query = "insert into usuarios_seguidores(id_usuario, id_usuario_seguindo)
-				  values(:id_usuario, :id_usuario_seguindo)";
+	public function deixarSeguirUsuario($id_usuario_seguindo) {
+		$query = "delete from 
+					usuarios_seguidores
+				  where 
+				  	id_usuario = :id_usuario and id_usuario_seguindo = :id_usuario_seguindo";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(':id_usuario', $this->__get('id'));
-		$stmt->bindValue(':id_usuario', $this->__get('id'));
+		$stmt->bindValue(':id_usuario_seguindo', $id_usuario_seguindo);
 		$stmt->execute();
 
-		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		return true;
+
+	}
+
+	//Deixar de seguir usuários
+	public function excluirTweet($id_usuario_seguindo) {
+		$query = "delete from tweets where id_usuarios = :id_usuario and id = :tweet_id";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':id_usuario', $this->__get('id'));
+		$stmt->bindValue(':tweet_id', $tweet['id']);
+		$stmt->execute();
+
+		return true;
 
 	}
 
