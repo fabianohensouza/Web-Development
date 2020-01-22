@@ -27,25 +27,24 @@
 					
 					<div class="row mt-2 mb-2">
 						<div class="col mb-2">
-							<span class="perfilPainelNome">Nome do Usuário</span>
+							<span class="perfilPainelNome"><?php print_r($this->view->nome);?></span>
 						</div>
 					</div>
-
 					<div class="row mb-2">
 
 						<div class="col">
 							<span class="perfilPainelItem">Tweets</span><br />
-							<span class="perfilPainelItemValor">0</span>
+							<span class="perfilPainelItemValor"><?php print_r($this->view->total_tweets);?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguindo</span><br />
-							<span class="perfilPainelItemValor">0</span>
+							<span class="perfilPainelItemValor"><?php print_r($this->view->seguindo);?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguidores</span><br />
-							<span class="perfilPainelItemValor">0</span>
+							<span class="perfilPainelItemValor"><?php print_r($this->view->seguidores);?></span>
 						</div>
 
 					</div>
@@ -69,7 +68,7 @@
 				</div>
 			</div>
 
-			<?php foreach($this->viwe->tweets as $id_tweet => $tweet) { ?>
+			<?php foreach($this->view->tweets as $id_tweet => $tweet) { ?>
 				<div class="row tweet">
 					<div class="col">
 						<p><strong><?=$tweet['nome']; ?></strong> <small><span class="text text-muted">- <?=$tweet['data']; ?></span></small></p>
