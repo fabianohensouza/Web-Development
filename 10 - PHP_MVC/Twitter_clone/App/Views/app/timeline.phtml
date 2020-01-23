@@ -27,24 +27,24 @@
 					
 					<div class="row mt-2 mb-2">
 						<div class="col mb-2">
-							<span class="perfilPainelNome"><?php print_r($this->view->nome);?></span>
+							<span class="perfilPainelNome"><?php print_r($this->view->nome['nome']);?></span>
 						</div>
 					</div>
 					<div class="row mb-2">
 
 						<div class="col">
 							<span class="perfilPainelItem">Tweets</span><br />
-							<span class="perfilPainelItemValor"><?php print_r($this->view->total_tweets);?></span>
+							<span class="perfilPainelItemValor"><?php print_r($this->view->total_tweets['total_tweet']);?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguindo</span><br />
-							<span class="perfilPainelItemValor"><?php print_r($this->view->seguindo);?></span>
+							<span class="perfilPainelItemValor"><?php print_r($this->view->seguindo['total_seguindo']);?></span>
 						</div>
 
 						<div class="col">
 							<span class="perfilPainelItem">Seguidores</span><br />
-							<span class="perfilPainelItemValor"><?php print_r($this->view->seguidores);?></span>
+							<span class="perfilPainelItemValor"><?php print_r($this->view->seguidores['total_seguidores']);?></span>
 						</div>
 
 					</div>

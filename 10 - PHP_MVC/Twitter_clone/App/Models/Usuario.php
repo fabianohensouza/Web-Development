@@ -169,7 +169,7 @@ class Usuario extends Model {
 
 	public function getTotaltweets() {
 
-		$query = "select count(*) as total_tweet from tweets where id = :id_usuario";
+		$query = "select count(*) as total_tweet from tweets where id_usuarios = :id_usuario";
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(':id_usuario', $this->__get('id'));
 		$stmt->execute();
