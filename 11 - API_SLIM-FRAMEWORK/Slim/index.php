@@ -1,109 +1,36 @@
 <?php
 
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
 require 'vendor/autoload.php';
 
 $app = new \Slim\App;
 
-$app->get('/route', function() {
+/* --- Container Dependence Injection ---*/
 
-    echo '{ "Route": {
+/* Creating a external class */
+class Service {
 
-                "Status": "Reached"
-                     }
-          }';
+}
 
-});
+/* Create a container using Pimple Method */
+$container = $app->getContainer();
+$container['service'] = function() {
 
-$app->get('/routename/{id}', function($request, $response) {
+  return new Service;
 
-    $id = $request->getAttribute('id');
-    echo '{ "Route": {
+};
 
-                "Status": "Reached",
-                "Name": "' . $id . '"
-                     }
-          }';
+$app->get('/service', function(Request $request, Response $response) use ($service){
 
-});
-
-$app->get('/routename2[/{id}]', function($request, $response) { //The[] indicates thar the parameter is optional
-
-    $id = $request->getAttribute('id');
-    
-    if ($id) {
-      echo "The route " . $id . " exists!";
-    } else {
-      echo "We cannot found the route.";
-    }
+  $service = $this->get('service');
+  var_dump($service);
 
 });
 
-$app->get('/posts[/{year}[/{month}]]', function($request, $response) { //The[] indicates thar the parameter is optional
-
-    $year = $request->getAttribute('year');
-    $month = $request->getAttribute('month');
-    
-    if ($year) {
-
-      echo "Posts";
-      
-      if ($month) {
-        
-        echo " of Month " . $month;
-      
-      }
-      
-      echo " of Year " . $year;
-    
-    } else {
-      
-      echo "We cannot found the posts.";
-    
-    }
-
-});
-
-$app->get('/list/{items:.*}', function($request, $response) { //Recieving any data as a parameter
-
-    $items = $request->getAttribute('items');
-    
-    //echo $items;   
-    
-    var_dump(explode('/', $items));
-
-});
-
-// ---- *** Naming the routes *** ----
-$app->get('/blog/posts/{id}', function($request, $response) { 
-
-    $id = $request->getAttribute('id');
-    echo "Route ID: " . $id;
-
-})->setName("blog");
-
-$app->get('/mysite', function($request, $response) { 
-
-    $return = $this->get("router")->pathFor("blog", ["id" => "55"]);
-
-    echo $return;
-
-});
-
-// ---- *** Grouping routes *** ---
-$app->group('/v1', function() {
-
-  $this->get('/route1', function() {
-
-      echo 'Route 1';
-
-  });
-
-  $this->get('/route2', function() {
-
-      echo 'Route 2';
-
-  });
-});
+/* Controller as a service */
+$app->get('/user', 'MyApp\controlles\Home:index');
 
 $app->run();
 
