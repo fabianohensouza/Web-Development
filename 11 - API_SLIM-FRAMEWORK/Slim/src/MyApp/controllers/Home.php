@@ -4,16 +4,23 @@
 	
 	class Home {
 
+		//protected $container;
+		protected $view;
+
+		public function __construct($view) {
+
+			$this->view = $view;
+
+		}
+
 		public function index($request, $response) {
 
-			return $response->write('Index Test!');
-			/*$id = $request->getAttribute('id');
-		    echo '{ "Route": {
+			/*return $response->write('Index Test!');*/
 
-		                "Status": "Reached",
-		                "Name": "' . $id . '"
-		                     }
-		          }';*/
+			//$req = $this->container->get('request');
+			//$view = $this->container->get('View');
+
+			var_dump($this->view);
 
 		}
 

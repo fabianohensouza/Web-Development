@@ -5,7 +5,14 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require 'vendor/autoload.php';
 
-$app = new \Slim\App;
+/* Instancing the Slim App and defining the detailed errors report */
+$app = new \Slim\App([
+
+  'settings' => [
+    'displayErrorDetails' => true
+  ]
+
+]);
 
 /* --- Container Dependence Injection ---*/
 
@@ -22,15 +29,22 @@ $container['service'] = function() {
 
 };
 
-$app->get('/service', function(Request $request, Response $response) use ($service){
+$app->get('/service', function(Request $request, Response $response){
 
   $service = $this->get('service');
   var_dump($service);
 
 });
 
+$container = $app->getContainer();
+$container['Home'] = function() {
+
+  return new MyApp\controllers\Home( new MyApp\View );
+
+};
+
 /* Controller as a service */
-$app->get('/user', 'MyApp\controlles\Home:index');
+$app->get('/user', 'Home:index');
 
 $app->run();
 
