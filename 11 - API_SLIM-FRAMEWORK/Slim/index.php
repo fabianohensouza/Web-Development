@@ -14,37 +14,47 @@ $app = new \Slim\App([
 
 ]);
 
-/* --- Container Dependence Injection ---*/
+/* --- Answer Types --- /*
+/* Header/Text/JSON/XML */
 
-/* Creating a external class */
-class Service {
+$app->get('/header', function(Request $request, Response $response){
 
-}
-
-/* Create a container using Pimple Method */
-$container = $app->getContainer();
-$container['service'] = function() {
-
-  return new Service;
-
-};
-
-$app->get('/service', function(Request $request, Response $response){
-
-  $service = $this->get('service');
-  var_dump($service);
+  $response->write('Header return'); //Text return
+  return $response->withHeader('allow', 'PUT')				//
+  			->withAddedHeader('Content-Length', 8)			//	Hearder Return
+  			->withAddedHeader('Customized-Header', True);	//
 
 });
 
-$container = $app->getContainer();
-$container['Home'] = function() {
+$app->get('/json', function(Request $request, Response $response){
 
-  return new MyApp\controllers\Home( new MyApp\View );
+  $array = [
+  	"main_name" => "Fabiano",
+  	"sur_name" => "Souza",
+  	"age" => 33
+  ];
 
-};
+  return $response->withJson( $array); //Json return
 
-/* Controller as a service */
-$app->get('/user', 'Home:index');
+});
+
+$app->get('/json2', function(Request $request, Response $response){
+
+  $json = file_get_contents('resource/json');
+  $response->write($json);
+
+  return $response->withHeader('Content-Type', 'application/json'); //Json return 2
+
+});
+
+$app->get('/xml', function(Request $request, Response $response){
+
+  $xml = file_get_contents('resource/xml');
+  $response->write($xml); 
+
+  return $response->withHeader('Content-Type', 'application/xml'); //XML return
+
+});
 
 $app->run();
 
