@@ -36,10 +36,26 @@ $container['db'] = function() {
   $capsule->setAsGlobal();
   $capsule->bootEloquent();
 
+  return $capsule;
+
 };
 
 /*** Using Database ***/
+$app->get('/users', function($request, $response) {
 
+    //$db = $this->get('db'); or $db = $this->db;
+    $db = $this->get('db')->schema() // Instancing the method Schema directly on the $db variable
+    $db->dropIfExists('users'); // If the table exists it'll be droped
+    $db->create('users', function($table){ // Creating the table and passing the paremeters through a anonymous function
+
+      $table->increments('id');
+      $table->string('name');
+      $table->string('email');
+      $table->timestamps();
+
+    });
+
+});
 
 $app->run();
 

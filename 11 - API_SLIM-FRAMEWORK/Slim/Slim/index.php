@@ -2,6 +2,7 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 require 'vendor/autoload.php';
 
@@ -14,28 +15,80 @@ $app = new \Slim\App([
 
 ]);
 
-/*** Using Middleware ***/
-$app->add( function($request, $response, $next){ //Middleware 1
+/* Instancing the Illuminato to connect to the databases */
+$container =  $app->getContainer();
 
-  $id = $request->getAttribute('id');
+$container['db'] = function() { 
+  
+  $capsule = new Capsule;
 
-  $response->getBody()->write( "The user id:" . $id . " was loged!");
-  $response = $next($request, $response);
-  $response->getBody()->write(' - Finish Middleware layer 1!');
+  $capsule->addConnection([
+      'driver'    => 'mysql',
+      'host'      => 'localhost',
+      'database'  => 'slim',
+      'username'  => 'root',
+      'password'  => '',
+      'charset'   => 'utf8',
+      'collation' => 'utf8_unicode_ci',
+      'prefix'    => '',
+  ]);
 
-  return $response;
+  $capsule->setAsGlobal();
+  $capsule->bootEloquent();
 
-});
+  return $capsule;
 
-$app->get('/user/{id}', function(Request $request, Response $response){
+};
 
-  $id = $request->getAttribute('id');
-  $request = $request->withAttribute('id', $id);
+/*** Using Database ***/
+$app->get('/users', function($request, $response) {
 
-  $response->getBody()->write(" - UserId:" . $id . " - ");//
+    //$db = $this->get('db'); or $db = $this->db;
 
-  return $response;
+    /*  The commented code bellow creates the table in the DataBase
+    $db = $this->get('db')->schema(); // Instancing the method Schema directly on the $db variable
+    $db->dropIfExists('users'); // If the table exists it'll be droped
+    $db->create('users', function($table){ // Creating the table and passing the paremeters through a anonymous function
 
+      $table->increments('id');
+      $table->string('name');
+      $table->string('email');
+      $table->timestamps();
+
+    });*/
+
+    $db = $this->get('db'); //instancing the database as $db
+
+    /* Insert records in tha table *
+    $db->table('users')->insert([
+
+      'name' => 'Sabrina Souza',
+      'email' => 'sasouza@gmail.com'
+
+    ]);
+    */
+
+    /* Update records 
+    $db->table('users')
+        ->where('id', 2)
+        ->update([
+          'email' => 'sabrinasouza1292@gmail.com'
+        ]);
+    */
+
+    /* Delete records 
+    $db->table('users')
+        ->where('id', '>' , 1)
+        ->delete();
+    */
+
+    /* List */
+    $users = $db->table('users')->get();
+    foreach ($users as $user) {
+
+      echo '<br>' . $user->name;
+    
+    }
 });
 
 $app->run();
