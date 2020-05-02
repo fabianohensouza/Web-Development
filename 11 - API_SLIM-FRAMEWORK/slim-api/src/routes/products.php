@@ -2,18 +2,24 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use App\Models\Product;
 
 $app->group('/api/v1', function() {
 
-  $this->get('/products', function($request, $response) {
+  $this->get('/products/list', function($request, $response) {
 
-      return $response->withJson(['name' => 'Xiaome Mi A8']);
+      $products = Product::get();
+      return $response->withJson($products);
+
+  });
+
+  $this->post('/products/add', function($request, $response) {
+
+      $data = $request->getParsedBody();
+      $products = Product::create();
+
+      return $response->withJson($products);
 
   });
 
-  $this->get('/route2', function($request, $response) {
-
-      echo 'Route 2';
-
-  });
 });
