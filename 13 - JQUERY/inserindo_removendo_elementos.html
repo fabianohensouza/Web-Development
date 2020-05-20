@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+
+			$(document).ready(() => {
+				
+				$('.item1').remove()
+				
+				$('#lista2 .item2').remove()
+
+				$('#paragrafo').before('<h1>Inicio</h1>')
+				$('#paragrafo').after('<h1>Fim</h1>')
+				
+				$('#paragrafo p').html('<h5>Substitui o Paragrafo Unico</h5>')
+
+				$('#paragrafo').append('<p>Paragrafo 2</p>')
+				$('#paragrafo').prepend('<p>Paragrafo 1</p>')
+
+			})
+
+		</script>
+	</head>
+
+	<body>
+		
+		<ul id="lista1">
+			<li class="item1">Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+		</ul>
+
+		<div id="lista2">
+			<div>Item 1</div>
+			<div class="item2">Item 2</div>
+			<div>Item 3</div>
+		</div>
+
+		<hr id="linha" />
+
+		<div id="paragrafo">
+			<p>Paragrafo Unico</p>
+		</div>
+
+	</body>
+
+</html>

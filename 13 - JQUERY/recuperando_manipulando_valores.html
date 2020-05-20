@@ -9,11 +9,17 @@
 
 			$(document).ready(() => {
 				
+				$('#nome').val('Fabiano Souza')
+				$('#origem').val('4')
+
+				$('.sexo:checked').val()
 				
 				$.each($('.interesse:checked'), (indice, valor) => {
 					console.log(indice, valor.value)
 				})
 
+				$('#checkbox').after('<input type="checkbox" name="interesse" class="interesse" value="java">Java<br />')
+				$('#checkbox').after('<input type="checkbox" name="interesse" class="interesse" value="python">Python<br />')
 
 			})
 
@@ -40,7 +46,7 @@
 		<input type="radio" name="sexo" class="sexo" value="m">Masculino<br />
 		<br />
 
-		<p>Interesses:</p>
+		<p id="checkbox">Interesses:</p>
 		<input type="checkbox" name="interesse" class="interesse" value="php">PHP<br />
 		<input type="checkbox" name="interesse" class="interesse" value="js">JavaScript<br />
 		<input type="checkbox" name="interesse" class="interesse" value="angular">Angular<br />
