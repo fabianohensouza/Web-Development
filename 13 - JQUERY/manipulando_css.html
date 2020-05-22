@@ -20,6 +20,30 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script>
 
+			$(document).ready(() => {
+				//$('#topo').css('background-color', 'green').css('border', '2px solid red').css('border-radius', '40px')
+				$('#topo').css({'background-color': 'green',
+								'border': '2px solid red',
+								'border-radius': '40px'})
+
+				$('input').addClass('campo')
+
+				$('textarea').addClass('padrao')
+
+				$('button').addClass('erro')
+
+				$('#teste').addClass('campo padrao erro')
+
+				console.log($('button').hasClass('campo'))
+
+				if ($('#teste').hasClass('padrao')) {
+					alert('Temos um campo com a classe padrão!')
+				}
+
+				$('input').removeClass('campo')
+				
+			})
+
 		</script>
 	</head>
 
@@ -38,7 +62,7 @@
 			<br />
 
 			<p>Email:</p>
-			<input type="text" />
+			<input type="text" id="teste" />
 			<br />
 
 			<p>Mensagem:</p>
