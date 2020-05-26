@@ -23,12 +23,13 @@
 			}
 
 			.tecla {				
-				width: 80px;
-				height: 80px;
+				width: 55px;
+				height: 55px;
 				background-color: #E6E6E6;
 				border: solid 1px;
 				text-align:center;
-				display:inline;
+				display:inline-block;
+				margin: 5px;
 			}
 		</style>
 
@@ -109,9 +110,21 @@
 					var n = str.length
 					$('#resultadoTexto').html('Teclas digitadas: ' + n + ' - ')
 
+					console.log('Tecla ' + e.keyCode)
+
 					if( e.keyCode == 13) {
 						$('#resultadoTecla').html('Teclou Enter').css('background-color', 'red')
 					}
+				})
+
+				$('#gamekey').keydown( (e) => {
+
+					/*if( e.keyCode == 13) {
+						$('#resultadoTecla').html('Teclou Enter').css('background-color', 'green')
+					}*/
+
+					$('#gamekey').val('').css('background-color', 'grey')
+					$('#gamekey').html('').css('background-color', 'grey')
 				})
 
 			})
@@ -160,12 +173,15 @@
 			<span id="resultadoTexto"></span>
 			<span id="resultadoTecla">Resultado do evento sobre o input</span>
 			<br><br>
-			<div class="tecla" id="">LEFT</div>
-			<div class="tecla" id="up">UP</div>			
-			<div class="tecla" id="">RIGHT</div>
-			</br>
-			<div class="tecla" id="">ENTER</div>
-			<div class="tecla" id="down">DOWN</div>
+			<div id="game" style="border: solid 1px;">
+				<div class="tecla" id="enter">ENTER</div>
+				<div class="tecla" id="up">UP</div>
+				</br>
+				<div class="tecla" id="">LEFT</div>
+				<div class="tecla" id="down">DOWN</div>		
+				<div class="tecla" id="">RIGHT</div>
+				<input type="text" class="tecla" id="gamekey"/>
+			</div>
 			<hr />
 
 			<h3>Formulário</h3>
