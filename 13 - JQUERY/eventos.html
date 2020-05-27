@@ -19,7 +19,11 @@
 			}
 
 			.inputFocado {
-				background-color: #ff0000;
+				background-color: lightgreen;
+			}
+
+			.inputDesfocado {
+				background-color: orange;
 			}
 
 			.tecla {				
@@ -119,12 +123,104 @@
 
 				$('#gamekey').keydown( (e) => {
 
-					/*if( e.keyCode == 13) {
-						$('#resultadoTecla').html('Teclou Enter').css('background-color', 'green')
-					}*/
+					let key = e.keyCode
 
-					$('#gamekey').val('').css('background-color', 'grey')
-					$('#gamekey').html('').css('background-color', 'grey')
+					switch ( key ) {
+					  case 38:
+
+					    //$('#gamekey').val('UP');
+					    $(e.target).val('');
+					    $('#up').css('background-color', 'grey');
+
+					    break;
+					  case 40:
+
+					    $('#gamekey').val('DOWN');
+					    $('#down').css('background-color', 'grey');
+
+					    break;
+					  case 37:
+
+					    $('#gamekey').val('LEFT');
+					    $('#left').css('background-color', 'grey');
+
+					    break;
+					  case 39:
+
+					    $('#gamekey').val('RIGHT');
+					    $('#right').css('background-color', 'grey');
+
+					    break;
+					  case 13:
+
+					    $('#gamekey').val('ENTER');
+					    $('#enter').css('background-color', 'lightgreen');
+
+					  	break;
+  
+  					  default:
+
+					    $(e.target).css('background-color', 'RED')
+
+					}
+				})
+
+				$('#gamekey').keyup( (e) => {
+
+					$('#up').css('background-color', '#E6E6E6');
+					$('#down').css('background-color', '#E6E6E6');
+					$('#left').css('background-color', '#E6E6E6');
+					$('#right').css('background-color', '#E6E6E6');
+					$('#enter').css('background-color', '#E6E6E6');
+					$(e.target).val('').css('background-color', '#E6E6E6');
+
+				})
+
+				$('#nome, #email').focus((e) => {
+
+					$(e.target).removeClass('inputDesfocado');
+					$(e.target).attr('placeholder', 'Foco!').addClass('inputFocado');
+
+				})
+
+				$('#nome, #email').blur((e) => {
+
+					$(e.target).removeClass('inputFocado');
+					$(e.target).attr('placeholder', 'Desfoco!').addClass('inputDesfocado');
+
+				})
+
+				$('#opcao').change(() => {
+
+					let opcao = $('#opcao').val()
+
+					switch ( opcao ) {
+					  case "duvida":
+
+					    $('#motivo').html('Duvida!').css('background-color', 'orange')
+
+					    break;
+					  case "sugestao":
+
+					    $('#motivo').html('Sugestão!').css('background-color', 'lightgreen');
+
+					    break;
+					}
+
+				})
+
+				$('#form').submit((e) => {
+
+					e.preventDefault()
+					$('body').css('background-color', '#C8FE2E')
+
+				})
+
+				$('.link').click((e) => {
+
+					e.preventDefault()
+					$('body').css('background-color', 'white')
+
 				})
 
 			})
@@ -173,13 +269,13 @@
 			<span id="resultadoTexto"></span>
 			<span id="resultadoTecla">Resultado do evento sobre o input</span>
 			<br><br>
-			<div id="game" style="border: solid 1px;">
+			<div id="game" style="border: solid 1px;">				
 				<div class="tecla" id="enter">ENTER</div>
 				<div class="tecla" id="up">UP</div>
 				</br>
-				<div class="tecla" id="">LEFT</div>
+				<div class="tecla" id="left">LEFT</div>
 				<div class="tecla" id="down">DOWN</div>		
-				<div class="tecla" id="">RIGHT</div>
+				<div class="tecla" id="right">RIGHT</div>
 				<input type="text" class="tecla" id="gamekey"/>
 			</div>
 			<hr />
@@ -200,10 +296,13 @@
 				</select>
 				
 				<button type="submit">Enviar</button>
+				
+				<span id="motivo"></span>
+
 			</form>
 
 			<br />
-			<a href="http://www.google.com.br">Google</a>
+			<a class="link" href="http://www.google.com.br">Google</a>
 		</div>
 	</body>
 
