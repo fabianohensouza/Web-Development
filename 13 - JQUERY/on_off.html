@@ -17,6 +17,8 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script>
 			$(document).ready(() => {
+
+				let classNumber = 0
 				
 				$('body').on('focus', 'input', e => {
 					$(e.target).removeClass('desfocado')
@@ -28,14 +30,28 @@
 					$(e.target).addClass('desfocado')
 				})
 
-				$('body').append('<br /><br /><input type="text" class="desfocado" />')
+				//$('body').off('blur', 'input') Desable blur
+
+				$('body').on('keyup', 'input', e => {
+
+					if ( e.keyCode == 13) {
+
+							$('body').append('<br /><br /><input type="text" class="desfocado" />')
+
+							classNumber++
+
+					}
+
+				})
+
+				
 			})
 		</script>
 	</head>
 
 	<body>
 		
-		<input type="text" class="desfocado" />
+		<input class="input_0" type="text" class="desfocado" />
 			
 	</body>
 
