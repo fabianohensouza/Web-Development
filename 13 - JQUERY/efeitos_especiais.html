@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			button {
+				margin-bottom: 5px;
+				width: 100px;
+			}
+
+			.div {
+				width: 100px;
+				height: 100px;
+			}
+
+			.div1 {
+				background-color: red
+			}
+
+			.div2 {
+				background-color: green
+			}
+
+			.div3 {
+				background-color: blue
+			}
+
+			.grupo {
+				padding: 25px;
+				float: left
+			}
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(() => {
+				
+				let show, opacity = true
+
+				$('#btn0').click(() => {
+					if ( !show ) {
+						$('#div0').show('slow')
+						show = true
+						console.log('Exibe')
+					} else {
+						$('#div0').hide('fast')
+						show = false
+						console.log('Esconde')
+					}
+				})
+
+				$('#btn1').click(() => {
+					$('#div1').toggle('slow')
+				})
+
+				$('#btn2').click(() => {
+					$('#div2').fadeToggle(4000)
+				})
+
+				$('#btn3').click(() => {
+					if (opacity) {
+						$('#div3').fadeTo('slow', 0.2)
+						opacity = false
+					} else {
+						$('#div3').fadeTo('slow', 1)
+						opacity = true
+					}
+				})
+
+				$('#btn4').click(() => {
+					$('#div4').slideToggle(1500)
+				})
+				
+			})
+		</script>
+	</head>
+
+	<body>
+		
+		<div class="grupo">
+			<button id="btn0" type="button">DIV 0</button>
+			<div id="div0" class="div div1"></div>
+		</div>
+		
+		<div class="grupo">
+			<button id="btn1" type="button">DIV 1</button>
+			<div id="div1" class="div div1"></div>
+		</div>
+
+		<div class="grupo">
+			<button id="btn2" type="button">DIV 2</button>
+			<div id="div2" class="div div2"></div>
+		</div>
+
+		<div class="grupo">
+			<button id="btn3" type="button">DIV 3</button>
+			<div id="div3" class="div div2"></div>
+		</div>
+
+		<div class="grupo">
+			<button id="btn4" type="button">DIV 4</button>
+			<div id="div4" class="div div3"></div>
+		</div>
+			
+	</body>
+
+</html>
