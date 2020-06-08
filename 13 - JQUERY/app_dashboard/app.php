@@ -97,9 +97,14 @@
 	$conexao = new Conexao();
 	$dashboard = new Dashboard();
 
-	$competencia = $_GET['competencia'];
-	$data_inicio = $competencia . '-01';
-	$data_fim = $competencia . '-31';
+	$competencia = explode('-', $_GET['competencia']);
+	$ano = $competencia[0];
+	$mes = $competencia[1];
+
+	$dia_mes = cal_days_in_month(CAL_GREGORIAN, $mes, $ano);
+
+	$data_inicio = $_GET['competencia'] . '-01';
+	$data_fim = $_GET['competencia'] . '-' . $dia_mes;
 
 
 	$dashboard->__set('data_inicio', $data_inicio);
@@ -109,9 +114,6 @@
 
 	$dashboard->__set('numeroVendas', $bd->getNumeroVendas());
 	$dashboard->__set('totalVendas', $bd->getTotalVendas());
-	echo '<pre>';
-	print_r($dashboard);
-	//print_r($dashboard->__get('totalVendas'));
-	echo '</pre>';
+	echo json_encode($dashboard);
 
 ?>
