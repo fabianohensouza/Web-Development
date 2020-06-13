@@ -84,15 +84,13 @@ class Tweet extends Model {
 
 	}
 
-	public function getAll() {
-		$query = "select 
-					count (*) as getTotalTweets
-				  from 
-					tweets as t
-					left join usuarios as u on (t.id_usuarios = u.id)
-				  where 
-					t.id_usuarios = :id_usuarios
-					or t.id_usuarios in (SELECT `id_usuario_seguindo` FROM `usuarios_seguidores` WHERE id_usuario = :id_usuarios)";
+	public function getTotalTweets() {
+		$query = "SELECT 
+					count(`tweet`) AS getTotalTweets
+				  FROM 
+				  	tweets 
+				  WHERE
+				  	`id_usuarios` = :id_usuarios";
 				    					
 		$stmt = $this->db->prepare($query);
 		$stmt->bindValue(':id_usuarios', $this->__get('id_usuarios'));

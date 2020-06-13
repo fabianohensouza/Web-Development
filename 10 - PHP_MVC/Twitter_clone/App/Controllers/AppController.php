@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 namespace App\Controllers;
 
@@ -15,17 +15,19 @@ class AppController extends Action {
 		$tweet = Container::getModel('Tweet');
 		$tweet->__set('id_usuarios', $_SESSION['id']);
 
-		//Variaveis de páginação
-		$total_tweets_pagina = 10;
-		$deslocamento = 0;
-
-		//$this->view->tweets = $tweet->getAll();
-		$tweets = $tweet->getPorPagina($total_tweets_pagina, $deslocamento);
-		$total_tweets = $tweet->getTotalTweets();
-		$this->view->total_paginas = ceil($toal_tweets['total'] / $total_tweets_pagina);
-
 		$usuario = Container::getModel('Usuario');
 		$usuario->__set('id', $_SESSION['id']);
+
+		//Variaveis de páginação
+		$total_tweets_pagina = 10;
+
+		//if ($_GET['pagina']) ? $this->view->deslocamento = $_GET['pagina'] : $this->view->deslocamento = 0;
+		$this->view->deslocamento = (isset($_GET['pagina'])) ? $_GET['pagina'] : 0;
+
+		//$this->view->tweets = $tweet->getAll();
+		$this->view->tweets = $tweet->getPorPagina($total_tweets_pagina, $this->view->deslocamento);
+		$total_tweets = $tweet->getTotalTweets();
+		$this->view->total_paginas = ceil($total_tweets['getTotalTweets'] / $total_tweets_pagina);
 
 		$this->view->nome = $usuario->getInfoUsuario();
 		$this->view->total_tweets = $usuario->getTotaltweets();
