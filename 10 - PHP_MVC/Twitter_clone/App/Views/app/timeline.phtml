@@ -89,18 +89,21 @@
 			<div class="row mt-5">
 				<nav aria-label="...">
 					<ul class="pagination">
-						<li class="page-item <?php echo ($this->view->deslocamento == 0 ) ? 'active' : 'disabled'?>">
-							<a class="page-link" href="#" tableindex="-1">Primeira</a>
-						</li>
 						<li class="page-item">
-							<a class="page-link" href="#" tableindex="-1"><?=$this->view->deslocamento?></a>
+							<a class="page-link" href="?pagina=<?php echo ($this->view->pagina == 1 ) ? '1' : $this->view->pagina - 1 ?>" tableindex="0">Anterior</a>
 						</li>
+
+						<?php for($i = 1; $i <= $this->view->total_paginas; $i++) { ?>
+
+						<li class="page-item <?php echo ($this->view->pagina == $i ) ? 'active' : '' ?>">
+							<a class="page-link" href="?pagina=<?php echo $i ?>" tableindex="<?php echo $i ?>"><?=$i?></a>
+						</li>
+
+						<?php } ?>
+
+						
 						<li class="page-item">
-							<a class="page-link" href="#"><?=$this->view->total_paginas?><span class="sr-only">(current)</span></a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" tableindex="last">Ultima</a>
-						</li>
+							<a class="page-link" href="?pagina=<?php echo ($this->view->pagina == $this->view->total_paginas ) ? $this->view->total_paginas : $this->view->pagina + 1 ?>" tableindex="<?php echo $i ?>">Ṕróxima</a>
 					</ul>
 				</nav>
 			</div>

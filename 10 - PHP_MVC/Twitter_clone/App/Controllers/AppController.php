@@ -22,10 +22,11 @@ class AppController extends Action {
 		$total_tweets_pagina = 10;
 
 		//if ($_GET['pagina']) ? $this->view->deslocamento = $_GET['pagina'] : $this->view->deslocamento = 0;
-		$this->view->deslocamento = (isset($_GET['pagina'])) ? $_GET['pagina'] : 0;
+		$this->view->pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 1;
+		$deslocamento = ($this->view->pagina - 1) * $total_tweets_pagina;
 
 		//$this->view->tweets = $tweet->getAll();
-		$this->view->tweets = $tweet->getPorPagina($total_tweets_pagina, $this->view->deslocamento);
+		$this->view->tweets = $tweet->getPorPagina($total_tweets_pagina, $deslocamento);
 		$total_tweets = $tweet->getTotalTweets();
 		$this->view->total_paginas = ceil($total_tweets['getTotalTweets'] / $total_tweets_pagina);
 
